@@ -17,6 +17,16 @@ export const styles = theme => ({
   progressSection: {
     width: '50%',
   },
+  rankingText: {
+    paddingLeft: 32,
+    paddingRight: 32,
+  },
+  rankingTextSection: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+  },
   referenceSection: {
     display: 'flex',
     flexDirection: 'row',
@@ -25,6 +35,7 @@ export const styles = theme => ({
   },
   videoPlayer: {
     width: 280,
+    height: 170,
     paddingLeft: 8,
     paddingRight: 8,
   },
@@ -37,6 +48,7 @@ export const styles = theme => ({
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
+    overflow: 'scroll',
     justifyContent: 'center',
   },
 });
