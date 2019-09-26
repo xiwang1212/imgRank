@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { fontTheme } from './styles/theme';
 import Landing from './Landing';
 import Game from './game/Game';
+import Finish from './Finish';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <div className="App">
           <Route exact path="/" component={Landing} />
           <Route path="/game" component={Game} />
+          <Route path="/finish" component={Finish} />
         </div>
       </MuiThemeProvider>
     </Router>

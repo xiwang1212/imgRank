@@ -4,6 +4,9 @@ import { styles } from './styles/landing';
 import { Typography, Button } from '@material-ui/core';
 import { Link } from "react-router-dom";
 import tmp from './tmp.png';
+import StepOne from './example1.png';
+import StepTwo from './ranking.png';
+import StepThree from './button.png';
 
 class Landing extends Component {
 
@@ -20,28 +23,34 @@ class Landing extends Component {
           </Typography>
         </div>
         <div className={classes.descriptionSection}>
-          <Typography variant="h5">
+          <Typography variant="h4" className={classes.descriptionTitle}>
             How To Play:
           </Typography>
           <div className={classes.stepSection}>
             <div className={classes.singleStep}>
-              <img src={tmp} />
+              <div className={classes.imageContainer}>
+                <img src={StepOne} style={{height: 300}}/>
+              </div>
               <Typography className={classes.stepText}>
                 1. Watch the reference and unknown videos. Press buttons to
                 play/pause all videos in a section. Scroll to see all videos.
               </Typography>
             </div>
             <div className={classes.singleStep}>
-              <img src={tmp} />
+              <div className={classes.imageContainer}>
+                <img src={StepTwo} style={{width:380}}/>
+              </div>
               <Typography className={classes.stepText}>
-                Order unknown videos by how similar each is to the main concept
-                of the reference set using their labels A-E.
+                2. Order 5 unknown videos by how similar each is to the main concept
+                of the reference by dragging the videos around.
               </Typography>
             </div>
             <div className={classes.singleStep}>
-              <img src={tmp} className={classes.stepImage}/>
+              <div className={classes.imageContainer}>
+                <img src={StepThree} style={{width:380}}/>
+              </div>
               <Typography className={classes.stepText}>
-                Click "NEXT" when you're ready to move to the next level!
+                3. Click "NEXT" when you're ready to move to the next level!
               </Typography>
             </div>
           </div>

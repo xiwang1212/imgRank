@@ -1,5 +1,9 @@
+import Background from '../background.jpg';
+
 export const styles = theme => ({
   root: {
+    backgroundImage: `url(${Background})`,
+    backgroundSize: 'cover',
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -9,15 +13,31 @@ export const styles = theme => ({
   },
   buttonSection: {
     display: 'flex',
+    paddingBottom: 16,
   },
   descriptionSection: {
     display: 'flex',
     padding: 16,
+    height: '65%',
     width: '100vw',
     flexDirection: 'column',
   },
+  descriptionTitle: {
+    paddingBottom: 16,
+  },
+  imageContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 300,
+    width: 380,
+  },
   singleStep: {
     width: '30%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   startButton: {
     borderRadius: 16,
@@ -48,5 +68,6 @@ export const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    paddingTop: 16,
   },
 });

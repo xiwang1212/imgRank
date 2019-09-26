@@ -1,11 +1,21 @@
+import Background from '../background.jpg';
+
 export const styles = theme => ({
   root: {
+    backgroundImage: `url(${Background})`,
+    backgroundSize: 'cover',
     display: 'flex',
     width: '100vw',
     height: '100vh',
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'space-evenly',
+  },
+  buttonSection: {
+    display: 'flex',
+    position: 'relative',
+    width: '100%',
+    justifyContent: 'center',
   },
   nextButton: {
     borderRadius: 16,
@@ -23,9 +33,14 @@ export const styles = theme => ({
   },
   rankingTextSection: {
     display: 'flex',
-    flexDirection: 'row',
-    width: '100%',
+    width: 1396,
     justifyContent: 'space-between',
+  },
+  referenceBackground: {
+    background: '#E0E0E2',
+    display: 'flex',
+    padding: 8,
+    borderRadius: 8,
   },
   referenceSection: {
     display: 'flex',
@@ -33,15 +48,21 @@ export const styles = theme => ({
     width: '100%',
     justifyContent: 'center',
   },
-  videoPlayer: {
+  snackbarError: {
+    flexWrap: 'nowrap!important',
+    backgroundColor: '#a31f34!important',
+  },
+  videoPlayerRef: {
+    width: 320,
+    padding: '8px 16px 8px 16px',
+  },
+  videoPlayerUnknown: {
     width: 280,
-    height: 170,
-    paddingLeft: 8,
-    paddingRight: 8,
   },
   videoSection: {
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
     width: '100%',
   },
   unknownSection: {
