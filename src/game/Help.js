@@ -25,6 +25,11 @@ const styles = theme => ({
     left: '85%',
     backgroundColor: '#7BD7D7',
     color: '#F9F9F9',
+    [theme.breakpoints.down('md')]: {
+      position: 'relative',
+      left: '0%',
+      marginTop: 16,
+    },
   },
 });
 

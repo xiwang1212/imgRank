@@ -24,7 +24,6 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
   padding: grid*2,
-  paddingBottom: grid*4,
   margin: `0 ${grid}px 0 0`,
 
   // change background colour if dragging
@@ -138,6 +137,7 @@ class Game extends Component {
 
   render() {
     const { classes } = this.props;
+    var labels = ["Most Similar", "More Similar", "Similar", "Less Similar", "Least Similar"];
     console.log("#state: ", this.state);
     return(
       <div className={classes.root}>
@@ -160,6 +160,7 @@ class Game extends Component {
                 }
               }
             }
+            
           />
         </div>
         <div className={classes.videoSection}>
@@ -188,23 +189,6 @@ class Game extends Component {
           <Typography variant="h5">
             Unknown Videos
           </Typography>
-          <div className={classes.rankingTextSection}>
-            <Typography>
-              Least Similar
-            </Typography>
-            <Typography>
-              Less Similar
-            </Typography>
-            <Typography>
-              Similar
-            </Typography>
-            <Typography>
-              More Similar
-            </Typography>
-            <Typography>
-              Most Similar
-            </Typography>
-          </div>
           <div className={classes.unknownSection}>
 
             <DragDropContext onDragEnd={this.onDragEnd}>
@@ -215,7 +199,7 @@ class Game extends Component {
                     style={getListStyle(snapshot.isDraggingOver)}
                     {...provided.droppableProps}
                   >
-                    {Object.keys(this.state.unknownVideos).map((vidRef, index) => (
+                    {this.state.ordering.map((vidRef, index) => (
                       <div>
                         <div>
                         <Draggable key={vidRef} draggableId={vidRef} index={index}>
@@ -237,6 +221,9 @@ class Game extends Component {
                                 muted
                                 controls 
                                 loop />
+                              <Typography>
+                                {labels[index]}
+                              </Typography>
                             </div>
                           )}
                         </Draggable>

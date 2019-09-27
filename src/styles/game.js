@@ -16,16 +16,24 @@ export const styles = theme => ({
     position: 'relative',
     width: '100%',
     justifyContent: 'center',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
   },
   nextButton: {
     borderRadius: 16,
     fontSize: 36,
     width: 570,
+    maxWidth: '80%',
     paddingLeft: 32,
     paddingRight: 32,
   },
   progressSection: {
-    width: '50%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: '70%',
   },
   rankingText: {
     paddingLeft: 32,
@@ -45,8 +53,9 @@ export const styles = theme => ({
   referenceSection: {
     display: 'flex',
     flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'center',
+    maxWidth: '100%',
+    justifyContent: 'flex-start',
+    overflow: 'auto',
   },
   snackbarError: {
     flexWrap: 'nowrap!important',
@@ -55,9 +64,15 @@ export const styles = theme => ({
   videoPlayerRef: {
     width: 320,
     padding: '8px 16px 8px 16px',
+    [theme.breakpoints.down('md')]: {
+      width: 240,
+    }
   },
   videoPlayerUnknown: {
     width: 280,
+    [theme.breakpoints.down('md')]: {
+      width: 240,
+    }
   },
   videoSection: {
     display: 'flex',
