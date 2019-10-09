@@ -47,8 +47,10 @@ export const styles = theme => ({
   referenceBackground: {
     background: '#E0E0E2',
     display: 'flex',
-    padding: 8,
     borderRadius: 8,
+    padding: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   referenceSection: {
     display: 'flex',
@@ -63,7 +65,6 @@ export const styles = theme => ({
   },
   videoPlayerRef: {
     width: 320,
-    padding: '8px 16px 8px 16px',
     [theme.breakpoints.down('md')]: {
       width: 240,
     }
@@ -73,6 +74,26 @@ export const styles = theme => ({
     [theme.breakpoints.down('md')]: {
       width: 240,
     }
+  },
+  videoContainer: {
+    width: 280,
+    height: 157.5,
+    [theme.breakpoints.down('md')]: {
+      width: 240,
+      height: 135,
+    },
+    overflow: 'hidden',
+  },
+  videoContainerRef: {
+    width: 320,
+    height: 180.3,
+    paddingLeft: 8,
+    paddingRight: 8,
+    [theme.breakpoints.down('md')]: {
+      width: 240,
+      height: 135,
+    },
+    overflow: 'hidden',
   },
   videoSection: {
     display: 'flex',
