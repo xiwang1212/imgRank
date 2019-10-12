@@ -7,7 +7,9 @@ import Landing from './Landing';
 import Game from './game/Game';
 import Finish from './Finish';
 
+
 function App() {
+
   return (
     <Router>
       <MuiThemeProvider theme={fontTheme}>

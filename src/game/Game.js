@@ -81,7 +81,17 @@ class Game extends Component {
     });
   }
 
+  gup(name) {
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp( regexS );
+    var tmpURL = window.location.href;
+    var results = regex.exec( tmpURL );
+    if (results == null) return "";
+    else return results[1];
+  }
+
   retrieveRefVid() {
+    console.log("gup taskId: ", this.gup("ref"));
     var videos = {}
     for (let i = 0; i < 3; i++) {
       videos[dummy_videos[i]] = RELATIVE_PATH + dummy_videos[i];
@@ -90,6 +100,8 @@ class Game extends Component {
   }
 
   retrieveUnknownVid() {
+    console.log("gup unknownId: ", this.gup("unk"));
+
     var videos = {}
     for (var i = 0; i < 5; i++) {
       videos[dummy_videos[i]] = RELATIVE_PATH + dummy_videos[i];
@@ -149,9 +161,12 @@ class Game extends Component {
     console.log("#state: ", this.state);
     return(
       <div className={classes.root}>
+        <Typography variant="h2">
+          VidRank
+        </Typography>
         <div className={classes.progressSection}>
           <Typography variant="h5">
-            Progress: Level { this.state.levels } / {maxLevels}
+            Progress: { this.state.levels } / {maxLevels}
           </Typography>
           <Progress
             percent={this.state.percent}

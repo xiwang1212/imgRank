@@ -56,7 +56,7 @@ class Landing extends Component {
           </div>
         </div>
         <div className={classes.buttonSection}>
-          <Link to="/game" style={{ textDecoration: 'none' }}>
+          <Link to={{pathname:"/game", search: this.props.location.search}} style={{ textDecoration: 'none' }}>
             <Button variant="contained" size="large" className={classes.startButton}>
               START
             </Button>
