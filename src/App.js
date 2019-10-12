@@ -11,7 +11,7 @@ import Finish from './Finish';
 function App() {
 
   return (
-    <Router>
+    <Router basename="/vidrank">
       <MuiThemeProvider theme={fontTheme}>
         <div className="App">
           <Route exact path="/" component={Landing} />
