@@ -2,9 +2,11 @@
   "name": "vidrank",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://allenjlee.github.io/vidrank/",
   "dependencies": {
     "@material-ui/core": "^4.4.2",
     "@material-ui/icons": "^4.4.3",
+    "gh-pages": "^2.1.1",
     "react": "^16.9.0",
     "react-beautiful-dnd": "^11.0.5",
     "react-dom": "^16.9.0",
@@ -13,6 +15,8 @@
     "react-sweet-progress": "^1.1.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
