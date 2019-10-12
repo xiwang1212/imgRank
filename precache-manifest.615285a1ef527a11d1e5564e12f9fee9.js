@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bc289cd3cc088b4f4b994431888ba46a",
+    "revision": "ee9d0ccbf1ea65ca4d1deca2c075babb",
     "url": "/vidrank/index.html"
   },
   {
