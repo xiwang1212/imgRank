@@ -124,7 +124,7 @@ class Game extends Component {
   _handleClick = () => {
     // Something that sends the results of ordering to server
     if (this.state.percent === 100) {
-      this.props.history.push('/finish');
+      console.log("this is what is submitted");
     }
     console.log("current ordering: ", this.state.ordering);
     // if (this.state.ordering[0] !== this.state.groundTruth) {
