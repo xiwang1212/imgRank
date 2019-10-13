@@ -5,8 +5,11 @@ class Finish extends Component {
 
   render() {
     return(
-      <div>
-        Hello you are done.
+      <div className={classes.root}>
+        <div className={classes.titleSection}>
+          <Typography variant="h2" className={classes.title}>
+            You are done! Thank you for playing VidRank!
+        </div>
       </div>
     );
   }
