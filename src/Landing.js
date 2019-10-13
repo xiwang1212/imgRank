@@ -19,7 +19,7 @@ class Landing extends Component {
             VidRank
           </Typography>
           <Typography variant="h5" className={classes.subtitle}>
-            Some description of what the goal of this game is. Can be two lines because there is space.
+            Rank the videos according to how similar their action is to the reference videos!
           </Typography>
         </div>
         <div className={classes.descriptionSection}>
