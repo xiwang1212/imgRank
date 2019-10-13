@@ -35,7 +35,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   margin: `0 ${grid}px 0 0`,
 
   // change background colour if dragging
-  background: isDragging ? 'lightgreen' : '#81D2C7',
+  background: isDragging ? 'lightgreen' : '#000000',
 
   borderRadius: 8,
   // styles we need to apply on draggables
@@ -60,7 +60,7 @@ class Game extends Component {
       snackbarOpen: false,
       snackBarMsg: '',
       levels: 1,
-      percent: 0,
+      percent: Math.round(Math.min((1)/maxLevels*100, 100)),
       refVideos: {},
       unknownVideos: {},
       ordering: [],
@@ -125,22 +125,14 @@ class Game extends Component {
     // Something that sends the results of ordering to server
     if (this.state.percent === 100) {
       console.log("this is what is submitted");
+      return;
     }
     console.log("current ordering: ", this.state.ordering);
-    // if (this.state.ordering[0] !== this.state.groundTruth) {
-    //   if (this.state.chances === 0) {
-    //     this.props.history.push('/failure');
-    //   }
-    //   this._handleSnackbarOpen("The ordering for a vigilant is incorrect, you have one chance to correct it.");
-    //   this.setState({ chances: this.state.chances - 1 });
-    //   return;
-    // }
     this.setState({
       levels: this.state.levels + 1,
       percent: Math.round(Math.min((this.state.levels+1)/maxLevels*100, 100)),
       refVideos: this.retrieveRefVid(),
       unknownVideos: this.retrieveUnknownVid(),
-      // chances: 1,
     });
   }
 
@@ -161,7 +153,7 @@ class Game extends Component {
     console.log("#state: ", this.state);
     return(
       <div className={classes.root}>
-        <Typography variant="h2">
+        <Typography variant="h3">
           VidRank
         </Typography>
         <div className={classes.progressSection}>
@@ -174,8 +166,7 @@ class Game extends Component {
               {
                 active: {
                   symbol: this.state.percent + '%',
-                  trailColor: '#7389AE',
-                  color: '#416788'
+                  color: 'green'
                 },
                 success: {
                   symbol: this.state.percent + '%',
@@ -246,7 +237,7 @@ class Game extends Component {
                                   muted
                                   loop />
                               </div>
-                              <Typography>
+                              <Typography variant='h5' style={{color: 'white'}}>
                                 {labels[index]}
                               </Typography>
                             </div>

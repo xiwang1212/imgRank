@@ -1,9 +1,5 @@
-import Background from '../background.jpg';
-
 export const styles = theme => ({
   root: {
-    backgroundImage: `url(${Background})`,
-    backgroundSize: 'cover',
     display: 'flex',
     width: '100vw',
     height: '100vh',

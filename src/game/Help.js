@@ -23,8 +23,8 @@ const styles = theme => ({
     position: 'absolute',
     bottom: 0,
     left: '85%',
-    backgroundColor: '#7BD7D7',
-    color: '#F9F9F9',
+    backgroundColor: '#e0e0e0',
+    color: '#000000',
     [theme.breakpoints.down('md')]: {
       position: 'relative',
       left: '0%',
