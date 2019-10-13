@@ -27,6 +27,12 @@ class Landing extends Component {
           <Typography variant="h4" className={classes.descriptionTitle}>
             How To Play:
           </Typography>
+          <Typography variant="h5" className={classes.descriptionTitle}>
+           You will be shown 1 to 4 reference videos, and a set of 5 unknown
+           videos. Your task is to rank the unknown videos from most to least
+           similar to the abstract action represented by the reference videos.
+           You will need to:
+          </Typography>
           <div className={classes.stepSection}>
             <div className={classes.singleStep}>
               <div className={classes.imageContainer}>
