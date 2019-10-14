@@ -19,19 +19,14 @@ const reorder = (list, startIndex, endIndex) => {
 
 const grid = 8;
 const maxLevels = 20;
+const SERVER_URL = "http://localhost:5000/"
 const RELATIVE_PATH = "http://data.csail.mit.edu/soundnet/actions3/";
-const dummy_videos = [
-  "injecting/yt-4h2HCo6UNFE_796.mp4",
-  "working/flickr-0-3-0-6-4-6-5-1-5603064651_1.mp4",
-  "bicycling/flickr-9-9-0-9-7-4-9-7-3599097497_19.mp4",
-  "cooking/flickr-2-9-3-9-2-8-3-8-4129392838_11.mp4",
-  "competing/6-4-6-7739315646.mp4",
-];
+
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
-  padding: grid*2,
+  padding: grid * 2,
   margin: `0 ${grid}px 0 0`,
 
   // change background colour if dragging
@@ -65,49 +60,82 @@ class Game extends Component {
       unknownVideos: {},
       ordering: [],
       // groundTruth: 'vidRef0',
+      workerId: this.gup('workerId') || 'dummy_id',
       chances: 1,
       vigilants: [],
     };
     this.onDragEnd = this.onDragEnd.bind(this);
+
   }
 
   componentDidMount() {
     // if (this.props.history.action === "POP") {
     //   this.props.history.push('/'); // prevent people from directly accessing
     // }
-    this.setState({
-      refVideos: this.retrieveRefVid(),
-      unknownVideos: this.retrieveUnknownVid(),
+    // TODO: Verify this is the correct placement of this logic in React App.
+    this.fetchTaskData(this.state.workerId).then(res => {
+      const refVideos = {}, rankVideos = {};
+      res.refVideos.map((val) => refVideos[val] = RELATIVE_PATH + val);
+      res.rankVideos.map((val) => rankVideos[val] = RELATIVE_PATH + val);
+      this.setState({
+        refVideos: refVideos,
+        unknownVideos: rankVideos,
+        ordering: Object.keys(rankVideos)
+      })
     });
+
   }
 
   gup(name) {
-    var regexS = "[\\?&]"+name+"=([^&#]*)";
-    var regex = new RegExp( regexS );
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
     var tmpURL = window.location.href;
-    var results = regex.exec( tmpURL );
+    var results = regex.exec(tmpURL);
     if (results == null) return "";
     else return results[1];
   }
 
+  async fetchTaskData(workerId) {
+    // TODO: Discuss endpoint design.
+    const url = SERVER_URL + `workerId?workerId=${workerId}`;
+    const response =
+      await fetch(url, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    return await response.json()
+  }
+
+  async postTaskResponse(data) {
+    // TODO: Discuss endpoint design.
+    const url = SERVER_URL + 'response';
+    const response =
+      await fetch(url,
+        {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: { 'Content-Type': 'application/json' }
+        });
+    return await response.json();
+  }
+
   retrieveRefVid() {
-    console.log("gup taskId: ", this.gup("ref"));
-    var videos = {}
-    for (let i = 0; i < 3; i++) {
-      videos[dummy_videos[i]] = RELATIVE_PATH + dummy_videos[i];
-    }
-    return videos;
+    // var videos = {}
+    // for (let i = 0; i < 3; i++) {
+    // videos[dummy_videos[i]] = RELATIVE_PATH + dummy_videos[i];
+    // }
+    // TODO: Update once we have better test data.
+    return this.state.refVideos
   }
 
   retrieveUnknownVid() {
-    console.log("gup unknownId: ", this.gup("unk"));
-
-    var videos = {}
-    for (var i = 0; i < 5; i++) {
-      videos[dummy_videos[i]] = RELATIVE_PATH + dummy_videos[i];
-    }
-    this.setState({ordering: Object.keys(videos)});
-    return videos;
+    // var videos = {}
+    // for (var i = 0; i < 5; i++) {
+    // videos[dummy_videos[i]] = RELATIVE_PATH + dummy_videos[i];
+    // }
+    // this.setState({ ordering: Object.keys(videos) });
+    // return videos;
+    // TODO: Update once we have better test data.
+    return this.state.unknownVideos;
   }
 
   onDragEnd(result) {
@@ -125,6 +153,9 @@ class Game extends Component {
     // Something that sends the results of ordering to server
     if (this.state.percent === 100) {
       console.log("this is what is submitted");
+      const dummy_data = { 'rankings': [1, 2, 3] };
+      this.postTaskResponse(dummy_data).then(resp => console.log(resp));
+
     }
     console.log("current ordering: ", this.state.ordering);
     // if (this.state.ordering[0] !== this.state.groundTruth) {
@@ -137,7 +168,7 @@ class Game extends Component {
     // }
     this.setState({
       levels: this.state.levels + 1,
-      percent: Math.round(Math.min((this.state.levels+1)/maxLevels*100, 100)),
+      percent: Math.round(Math.min((this.state.levels + 1) / maxLevels * 100, 100)),
       refVideos: this.retrieveRefVid(),
       unknownVideos: this.retrieveUnknownVid(),
       // chances: 1,
@@ -152,21 +183,21 @@ class Game extends Component {
   }
 
   _handleSnackbarClose = (event, reason) => {
-    this.setState({snackbarOpen: false});
+    this.setState({ snackbarOpen: false });
   }
 
   render() {
     const { classes } = this.props;
     var labels = ["Most Similar", "More Similar", "Similar", "Less Similar", "Least Similar"];
     console.log("#state: ", this.state);
-    return(
+    return (
       <div className={classes.root}>
         <Typography variant="h2">
           VidRank
         </Typography>
         <div className={classes.progressSection}>
           <Typography variant="h5">
-            Progress: { this.state.levels } / {maxLevels}
+            Progress: {this.state.levels} / {maxLevels}
           </Typography>
           <Progress
             percent={this.state.percent}
@@ -183,7 +214,6 @@ class Game extends Component {
                 }
               }
             }
-            
           />
         </div>
         <div className={classes.videoSection}>
@@ -192,20 +222,20 @@ class Game extends Component {
           </Typography>
           <div className={classes.referenceSection}>
             <div className={classes.referenceBackground}>
-            {
-              Object.keys(this.state.refVideos).map(vidRef => (
-                <div className={classes.videoContainerRef}>
-                  <video
-                    ref={vidRef}
-                    src={this.state.refVideos[vidRef]}
-                    type="video/mp4"
-                    className={classes.videoPlayerRef}
-                    autoPlay
-                    muted
-                    loop />
-                </div>
-              ))
-            }
+              {
+                Object.keys(this.state.refVideos).map(vidRef => (
+                  <div className={classes.videoContainerRef}>
+                    <video
+                      ref={vidRef}
+                      src={this.state.refVideos[vidRef]}
+                      type="video/mp4"
+                      className={classes.videoPlayerRef}
+                      autoPlay
+                      muted
+                      loop />
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
@@ -226,32 +256,32 @@ class Game extends Component {
                     {this.state.ordering.map((vidRef, index) => (
                       <div>
                         <div>
-                        <Draggable key={vidRef} draggableId={vidRef} index={index}>
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              style={getItemStyle(
-                                snapshot.isDragging,
-                                provided.draggableProps.style
-                              )}
-                            >
-                              <div className={classes.videoContainer}>
-                                <video 
-                                  src={this.state.unknownVideos[vidRef]}
-                                  type="video/mp4"
-                                  className={classes.videoPlayerUnknown}
-                                  autoPlay
-                                  muted
-                                  loop />
+                          <Draggable key={vidRef} draggableId={vidRef} index={index}>
+                            {(provided, snapshot) => (
+                              <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                style={getItemStyle(
+                                  snapshot.isDragging,
+                                  provided.draggableProps.style
+                                )}
+                              >
+                                <div className={classes.videoContainer}>
+                                  <video
+                                    src={this.state.unknownVideos[vidRef]}
+                                    type="video/mp4"
+                                    className={classes.videoPlayerUnknown}
+                                    autoPlay
+                                    muted
+                                    loop />
+                                </div>
+                                <Typography>
+                                  {labels[index]}
+                                </Typography>
                               </div>
-                              <Typography>
-                                {labels[index]}
-                              </Typography>
-                            </div>
-                          )}
-                        </Draggable>
+                            )}
+                          </Draggable>
                         </div>
                       </div>
                     ))}
@@ -263,7 +293,7 @@ class Game extends Component {
         </div>
         <div className={classes.buttonSection}>
           <Button variant="contained" className={classes.nextButton} onClick={this._handleClick}>
-            { this.state.percent === 100 ? "FINISH" : "NEXT" }
+            {this.state.percent === 100 ? "FINISH" : "NEXT"}
           </Button>
           <Snackbar
             anchorOrigin={{
@@ -273,19 +303,22 @@ class Game extends Component {
             open={this.state.snackbarOpen}
             autoHideDuration={3000}
             onClose={this._handleSnackbarClose}
-            style={{flexWrap:"nowrap!important"}}
+            style={{ flexWrap: "nowrap!important" }}
           >
             <SnackbarContent
               className={classes.snackbarError}
               message={
-                <span id="client-snackbar" style={{display: 'flex',
+                <span id="client-snackbar" style={{
+                  display: 'flex',
                   alignItems: 'center',
-                  flexWrap:'nowrap'}}>
+                  flexWrap: 'nowrap'
+                }}>
                   <ErrorIcon style={{
-                      opacity: 0.9,
-                      marginRight: 8,
-                      fontSize: 24,}}/>
-                      {this.state.snackbarMsg}
+                    opacity: 0.9,
+                    marginRight: 8,
+                    fontSize: 24,
+                  }} />
+                  {this.state.snackbarMsg}
                 </span>
               }
               action={[
@@ -296,7 +329,7 @@ class Game extends Component {
                   className="icon-button-close"
                   onClick={this._handleSnackbarClose}
                 >
-                  <CloseIcon style={{color: 'white'}} />
+                  <CloseIcon style={{ color: 'white' }} />
                 </IconButton>,
               ]}
             />
