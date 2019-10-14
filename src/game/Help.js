@@ -23,8 +23,8 @@ const styles = theme => ({
     position: 'absolute',
     bottom: 0,
     left: '85%',
-    backgroundColor: '#7BD7D7',
-    color: '#F9F9F9',
+    backgroundColor: '#e0e0e0',
+    color: '#000000',
     [theme.breakpoints.down('md')]: {
       position: 'relative',
       left: '0%',
@@ -76,17 +76,22 @@ const CustomizedDialogs = ( props ) => {
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-            in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+            You are shown 1 to 4 reference videos (top row), and a set of 5 unknown
+            videos (bottom row). Your task is to rank the unknown videos from most to least
+            similar to the abstract action represented by the reference videos.
+            You will need to:
           </Typography>
           <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-            lacus vel augue laoreet rutrum faucibus dolor auctor.
+          1. Watch the reference and unknown videos. Scroll to see all
+          videos if necessary.
           </Typography>
           <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-            scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-            auctor fringilla.
+          2. Order 5 unknown videos by how similar each is to the general
+          action represented by the reference videos. Drag the unknown
+          videos around to order them!
+          </Typography>
+          <Typography gutterBottom>
+            3. Click "NEXT" when you're ready to move to the next level!
           </Typography>
         </DialogContent>
       </Dialog>
