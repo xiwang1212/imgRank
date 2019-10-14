@@ -1,3 +1,4 @@
+import os
 import json
 import logging
 
@@ -15,7 +16,8 @@ app.logger.addHandler(file_handler)
 app.logger.setLevel(logging.INFO)
 CORS(app)
 
-with open("server_config.json") as f:
+d = os.path.dirname(os.path.abspath(__file__))
+with open(os.path.join(d, "server_config.json")) as f:
     config = json.load(f)
 
 
