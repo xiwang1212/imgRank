@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a0eb83b84f6b0481e1924fbc96405c2d",
+    "revision": "f2b39b710a7ff3ed7221b8b9ebe259b5",
     "url": "/vidrank/index.html"
   },
   {
-    "revision": "ea165034c64553c029b2",
+    "revision": "7d2539714f8272071d9e",
     "url": "/vidrank/static/css/2.84bcf17e.chunk.css"
   },
   {
-    "revision": "dfcb38e11b007ca7757d",
+    "revision": "c8ae7b7266c235cd8b14",
     "url": "/vidrank/static/css/main.818605d9.chunk.css"
   },
   {
-    "revision": "ea165034c64553c029b2",
-    "url": "/vidrank/static/js/2.5e29ceb8.chunk.js"
+    "revision": "7d2539714f8272071d9e",
+    "url": "/vidrank/static/js/2.caa2be6c.chunk.js"
   },
   {
-    "revision": "dfcb38e11b007ca7757d",
-    "url": "/vidrank/static/js/main.4571192f.chunk.js"
+    "revision": "c8ae7b7266c235cd8b14",
+    "url": "/vidrank/static/js/main.a7447a58.chunk.js"
   },
   {
     "revision": "316182382b8dd7ad4912",
