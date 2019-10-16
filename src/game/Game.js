@@ -20,7 +20,7 @@ const reorder = (list, startIndex, endIndex) => {
 const grid = 8;
 const maxLevels = 10;
 const SERVER_URL = "http://localhost:5000/"
-const RELATIVE_PATH = "http://data.csail.mit.edu/soundnet/actions3/";
+const MTURK_SUBMIT_SUFFIX = "/mturk/externalSubmit";
 
 
 const getItemStyle = (isDragging, draggableStyle) => ({
@@ -55,11 +55,14 @@ class Game extends Component {
     this.state = {
       snackbarOpen: false,
       snackBarMsg: '',
-      levels: 1,
+      disabled: false,
+      currentLevel: 1,
+      sets: [],
       percent: Math.round(Math.min((1) / maxLevels * 100, 100)),
       refVideos: {},
       unknownVideos: {},
       ordering: [],
+      result: [],
       // groundTruth: 'vidRef0',
       workerId: this.gup('workerId') || 'dummy_id',
       chances: 1,
@@ -74,17 +77,33 @@ class Game extends Component {
     //   this.props.history.push('/'); // prevent people from directly accessing
     // }
     // TODO: Verify this is the correct placement of this logic in React App.
-    this.fetchTaskData(this.state.workerId).then(res => {
-      const refVideos = {}, rankVideos = {};
-      res.refVideos.map((val) => refVideos[val] = RELATIVE_PATH + val);
-      res.rankVideos.map((val) => rankVideos[val] = RELATIVE_PATH + val);
-      this.setState({
-        refVideos: refVideos,
-        unknownVideos: rankVideos,
-        ordering: Object.keys(rankVideos)
-      })
-    });
+    var data = require('../hit_jsons/' + this.gup("task") + ".json");
+    console.log("data: ", data);
+    this.setState({
+      sets: data,
+    }, () => this.updateVideos());
+    // this.fetchTaskData(this.state.workerId).then(res => {
+    //   const refVideos = {}, rankVideos = {};
+    //   res.refVideos.map((val) => refVideos[val] = RELATIVE_PATH + val);
+    //   res.rankVideos.map((val) => rankVideos[val] = RELATIVE_PATH + val);
+    //   this.setState({
+    //     refVideos: refVideos,
+    //     unknownVideos: rankVideos,
+    //     ordering: Object.keys(rankVideos)
+    //   })
+    // });
 
+  }
+
+  updateVideos() {
+    const currentSet = this.state.sets[this.state.currentLevel-1]
+    const unknownVideos = {};
+    currentSet['videos_to_rank'].forEach((vid) => unknownVideos[vid] = vid);
+    this.setState({
+      refVideos: currentSet['reference_videos'],
+      unknownVideos: unknownVideos,
+      ordering: currentSet['videos_to_rank'],
+    })    
   }
 
   gup(name) {
@@ -150,12 +169,35 @@ class Game extends Component {
     });
   }
 
+  submitHIT() {
+      var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
+      this.state.result['WorkerId'] = this.gup("workerId");
+      this.state.result['AssignmentId'] = this.gup("assignmentId");
+      fetch(submitUrl, {method: 'POST', body: this.state.result})
+          .then(res => {
+            console.log("returning: ", res.json());
+            return res.json();
+          })  
+          .then(data => {
+              console.log("returning2: ", data);
+          }) 
+          .catch(err => {
+              console.log("returning3: ", err);
+          });
+  }
+
   _handleClick = () => {
+    var currentResult = this.state.sets[this.state.currentLevel - 1]
+    currentResult['human_ordering'] = this.state.ordering;
+    this.state.result.push(currentResult);
     // Something that sends the results of ordering to server
     if (this.state.percent === 100) {
-      console.log("this is what is submitted");
-      const dummy_data = { 'rankings': [1, 2, 3] };
-      this.postTaskResponse(dummy_data).then(resp => console.log(resp));
+      this.setState({disabled: true});
+      console.log("this is what is submitted: ", this.state.result);
+      this.submitHIT();
+      return;
+      // const dummy_data = { 'rankings': [1, 2, 3] };
+      // this.postTaskResponse(dummy_data).then(resp => console.log(resp));
 
     }
     console.log("current ordering: ", this.state.ordering);
@@ -167,13 +209,11 @@ class Game extends Component {
     //   this.setState({ chances: this.state.chances - 1 });
     //   return;
     // }
+    
     this.setState({
-      levels: this.state.levels + 1,
-      percent: Math.round(Math.min((this.state.levels + 1) / maxLevels * 100, 100)),
-      refVideos: this.retrieveRefVid(),
-      unknownVideos: this.retrieveUnknownVid(),
-      // chances: 1,
-    });
+      currentLevel: this.state.currentLevel + 1,
+      percent: Math.round(Math.min((this.state.currentLevel + 1) / maxLevels * 100, 100)),
+    }, () => this.updateVideos());
   }
 
   _handleSnackbarOpen(msg) {
@@ -189,7 +229,7 @@ class Game extends Component {
 
   render() {
     const { classes } = this.props;
-    var labels = ["Most Similar", "More Similar", "Similar", "Less Similar", "Least Similar"];
+    var labels = ["Least Similar", "Less Similar", "Similar", "More Similar", "Most Similar"];
     console.log("#state: ", this.state);
     return (
       <div className={classes.root}>
@@ -198,7 +238,7 @@ class Game extends Component {
         </Typography>
         <div className={classes.progressSection}>
           <Typography variant="h5">
-            Progress: {this.state.levels} / {maxLevels}
+            Progress: {this.state.currentLevel} / {maxLevels}
           </Typography>
           <Progress
             percent={this.state.percent}
@@ -292,7 +332,7 @@ class Game extends Component {
           </div>
         </div>
         <div className={classes.buttonSection}>
-          <Button variant="contained" className={classes.nextButton} onClick={this._handleClick}>
+          <Button variant="contained" disabled={this.state.disabled} className={classes.nextButton} onClick={this._handleClick}>
             {this.state.percent === 100 ? "FINISH" : "NEXT"}
           </Button>
           <Snackbar

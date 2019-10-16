@@ -72,6 +72,9 @@ export const styles = theme => ({
     }
   },
   videoContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: 280,
     height: 157.5,
     [theme.breakpoints.down('md')]: {
@@ -81,6 +84,9 @@ export const styles = theme => ({
     overflow: 'hidden',
   },
   videoContainerRef: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: 320,
     height: 180.3,
     paddingLeft: 8,
