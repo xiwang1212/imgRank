@@ -1,31 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a3e3995f41eb15da326ef63647cb91f0",
+    "revision": "a0eb83b84f6b0481e1924fbc96405c2d",
     "url": "/vidrank/index.html"
   },
   {
-    "revision": "dfbc2a5d8811974a2b7b",
-    "url": "/vidrank/static/css/2.533d620f.chunk.css"
+    "revision": "ea165034c64553c029b2",
+    "url": "/vidrank/static/css/2.84bcf17e.chunk.css"
   },
   {
-    "revision": "d37ab9e02bc602af517d",
-    "url": "/vidrank/static/css/main.4bc23541.chunk.css"
+    "revision": "dfcb38e11b007ca7757d",
+    "url": "/vidrank/static/css/main.818605d9.chunk.css"
   },
   {
-    "revision": "dfbc2a5d8811974a2b7b",
-    "url": "/vidrank/static/js/2.429a96e9.chunk.js"
+    "revision": "ea165034c64553c029b2",
+    "url": "/vidrank/static/js/2.5e29ceb8.chunk.js"
   },
   {
-    "revision": "d37ab9e02bc602af517d",
-    "url": "/vidrank/static/js/main.06dfa19c.chunk.js"
+    "revision": "dfcb38e11b007ca7757d",
+    "url": "/vidrank/static/js/main.4571192f.chunk.js"
   },
   {
     "revision": "316182382b8dd7ad4912",
     "url": "/vidrank/static/js/runtime~main.1a220d1e.js"
-  },
-  {
-    "revision": "1c5e98f34cd33bcc59e8132996e12fec",
-    "url": "/vidrank/static/media/background.1c5e98f3.jpg"
   },
   {
     "revision": "f5acb3a2a090c0155d8be90f6930edaa",
