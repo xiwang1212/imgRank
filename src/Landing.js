@@ -33,35 +33,41 @@ class Landing extends Component {
            similar to the abstract action represented by the reference videos.
            You will need to:
           </Typography>
+          <Typography variant="h4" className={classes.descriptionTitle}>
+            Guidelines:
+          </Typography>
           <div className={classes.stepSection}>
             <div className={classes.singleStep}>
-              <div className={classes.imageContainer}>
+              {/* <div className={classes.imageContainer}>
                 <img src={StepOne} style={{height: 300}}/>
-              </div>
+              </div> */}
               <Typography className={classes.stepText}>
                 1. Watch the reference and unknown videos. Scroll to see all
                 videos if necessary.
               </Typography>
             </div>
             <div className={classes.singleStep}>
-              <div className={classes.imageContainer}>
+              {/* <div className={classes.imageContainer}>
                 <img src={StepTwo} style={{width:380}}/>
-              </div>
+              </div> */}
               <Typography className={classes.stepText}>
                 2. Order 5 unknown videos by how similar each is to the general
-                action represented by the reference videos. Drag the unknown
+                action represented by the reference videos. <b>Drag</b> the unknown
                 videos around to order them!
               </Typography>
             </div>
             <div className={classes.singleStep}>
-              <div className={classes.imageContainer}>
+              {/* <div className={classes.imageContainer}>
                 <img src={StepThree} style={{width:380}}/>
-              </div>
+              </div> */}
               <Typography className={classes.stepText}>
-                3. Click "NEXT" when you're ready to move to the next level!
+                3. Click "NEXT" when you've completed the ordering!
               </Typography>
             </div>
           </div>
+          <Typography variant="h4" className={classes.descriptionTitle}>
+              Demo:
+          </Typography>
         </div>
         <div className={classes.buttonSection}>
           <Link to={{pathname:"/game", search: this.props.location.search}} style={{ textDecoration: 'none' }}>

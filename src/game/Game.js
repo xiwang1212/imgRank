@@ -18,7 +18,7 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 const grid = 8;
-const maxLevels = 20;
+const maxLevels = 10;
 const SERVER_URL = "http://localhost:5000/"
 const RELATIVE_PATH = "http://data.csail.mit.edu/soundnet/actions3/";
 
@@ -48,6 +48,7 @@ const getListStyle = isDraggingOver => ({
 });
 
 class Game extends Component {
+
 
   constructor(props) {
     super(props);
