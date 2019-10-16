@@ -1,15 +1,10 @@
-import Background from '../background.jpg';
-
 export const styles = theme => ({
   root: {
-    backgroundImage: `url(${Background})`,
-    backgroundSize: 'cover',
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'column',
     width: '100%',
-    height: '100vh',
   },
   buttonSection: {
     display: 'flex',
@@ -50,6 +45,7 @@ export const styles = theme => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    alignItems: 'flex-start',
     paddingBottom: 24,
   },
   stepText: {
