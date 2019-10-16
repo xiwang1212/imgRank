@@ -173,7 +173,7 @@ class Game extends Component {
       var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
       this.state.result['WorkerId'] = this.gup("workerId");
       this.state.result['AssignmentId'] = this.gup("assignmentId");
-      fetch(submitUrl, {method: 'POST', body: this.state.result})
+      fetch(submitUrl, {method: 'POST', mode: 'no-cors', body: JSON.stringify(this.state.result)})
           .then(res => {
             console.log("returning: ", res.json());
             return res.json();
