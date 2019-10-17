@@ -53,12 +53,11 @@ const getListStyle = isDraggingOver => ({
 
 // Testing Jquery + nodejs
 var jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const { window } = new JSDOM();
-const { document } = (new JSDOM('')).window;
+// const { JSDOM } = jsdom;
+// const { window } = new JSDOM();
+// const { document } = (new JSDOM('')).window;
 // global.document = document;
 // var $ = jQuery = require('jquery')(window);
-
 
 class Game extends Component {
 
@@ -90,6 +89,7 @@ class Game extends Component {
     //   this.props.history.push('/'); // prevent people from directly accessing
     // }
     // TODO: Verify this is the correct placement of this logic in React App.
+    console.log("gup: ", this.gup("task"));
     var data = require("../hit_jsons/" + this.gup("task") + ".json");
     // var data = require("../hit_jsons/refs1_fold_0.json");
     console.log("data: ", data);
