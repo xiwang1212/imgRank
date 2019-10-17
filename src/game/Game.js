@@ -210,7 +210,8 @@ class Game extends Component {
   }
 
   submitHITform() {
-      var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
+      // var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
+      var submitUrl = SANDBOX_SUBMIT;
 
       var form = $("#submit-form");
 
