@@ -90,8 +90,8 @@ class Game extends Component {
     //   this.props.history.push('/'); // prevent people from directly accessing
     // }
     // TODO: Verify this is the correct placement of this logic in React App.
-    // var data = require("../hit_jsons/" + this.gup("task") + ".json");
-    var data = require("../hit_jsons/refs1_fold_0.json");
+    var data = require("../hit_jsons/" + this.gup("task") + ".json");
+    // var data = require("../hit_jsons/refs1_fold_0.json");
     console.log("data: ", data);
     this.setState({
       sets: data,
@@ -192,8 +192,8 @@ class Game extends Component {
 
 
   submitHIT() {
-      // var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
-      var submitUrl = SANDBOX_SUBMIT;
+      var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
+      // var submitUrl = SANDBOX_SUBMIT;
       this.state.result['WorkerId'] = this.gup("workerId");
       this.state.result['AssignmentId'] = this.gup("assignmentId");
       fetch(submitUrl, {method: 'POST', mode: 'no-cors', body: JSON.stringify(this.state.result)})
@@ -210,16 +210,16 @@ class Game extends Component {
   }
 
   submitHITform() {
-      // var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
-      var submitUrl = SANDBOX_SUBMIT;
+      var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
+      // var submitUrl = SANDBOX_SUBMIT;
 
       var form = $("#submit-form");
 
       console.log("Gup output for assignmentId, workerId:", this.gup("assignmentId"),this.gup("workerId"))
-      // this.addHiddenField(form, 'assignmentId', this.gup("assignmentId"));
-      // this.addHiddenField(form, 'workerId', this.gup("workerId"));
-      this.addHiddenField(form, 'assignmentId', '3KMS4QQVK553U5INCHN7V4M3YOHFKM');
-      this.addHiddenField(form, 'workerId', 'AGCAOVRI9OYIQ');
+      this.addHiddenField(form, 'assignmentId', this.gup("assignmentId"));
+      this.addHiddenField(form, 'workerId', this.gup("workerId"));
+      // this.addHiddenField(form, 'assignmentId', '3KMS4QQVK553U5INCHN7V4M3YOHFKM');
+      // this.addHiddenField(form, 'workerId', 'AGCAOVRI9OYIQ');
 
 
       var results = {
