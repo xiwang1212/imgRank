@@ -13,6 +13,10 @@ class Finish extends Component {
             You are done! Thank you for playing VidRank!
         </Typography>
         </div>
+
+        <form id="submit-form" name="submit-form">
+        </form>
+
       </div>
     );
   }

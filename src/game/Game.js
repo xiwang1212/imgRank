@@ -47,6 +47,16 @@ const getListStyle = isDraggingOver => ({
   borderRadius: 8,
 });
 
+
+// Testing Jquery + nodejs
+var jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { window } = new JSDOM();
+const { document } = (new JSDOM('')).window;
+global.document = document;
+
+var $ = jQuery = require('jquery')(window);
+
 class Game extends Component {
 
 
@@ -103,7 +113,7 @@ class Game extends Component {
       refVideos: currentSet['reference_videos'],
       unknownVideos: unknownVideos,
       ordering: currentSet['videos_to_rank'],
-    })    
+    })
   }
 
   gup(name) {
@@ -177,14 +187,46 @@ class Game extends Component {
           .then(res => {
             console.log("returning: ", res.json());
             return res.json();
-          })  
+          })
           .then(data => {
               console.log("returning2: ", data);
-          }) 
+          })
           .catch(err => {
               console.log("returning3: ", err);
           });
   }
+
+  submitHITform() {
+      var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
+
+      var form = $("#submit-form");
+
+      addHiddenField(form, 'assignmentId', this.gup("assignmentId");
+      addHiddenField(form, 'workerId', this.gup("workerId"));
+      var results = {
+          'outputs': this.state.result
+      };
+
+      console.log("results", results);
+      addHiddenField(form, 'results', JSON.stringify(results));
+      // addHiddenField(form, 'feedback', $("#feedback-input").val());
+
+      $("#submit-form").attr("action", submitUrl);
+      $("#submit-form").attr("method", "POST");
+      $("#submit-form").submit();
+
+      // $("#submit-button").removeClass("loading");
+      // generateMessage("positive", "Thanks! Your task was submitted successfully.");
+      // $("#submit-button").addClass("disabled");
+  }
+
+  addHiddenField(form, name, value) {
+      // form is a jQuery object, name and value are strings
+      var input = $("<input type='hidden' name='" + name + "' value=''>");
+      input.val(value);
+      form.append(input);
+  }
+
 
   _handleClick = () => {
     var currentResult = this.state.sets[this.state.currentLevel - 1]
@@ -209,7 +251,7 @@ class Game extends Component {
     //   this.setState({ chances: this.state.chances - 1 });
     //   return;
     // }
-    
+
     this.setState({
       currentLevel: this.state.currentLevel + 1,
       percent: Math.round(Math.min((this.state.currentLevel + 1) / maxLevels * 100, 100)),
@@ -376,6 +418,10 @@ class Game extends Component {
           </Snackbar>
           <HelpDialog className={classes.helpButton} />
         </div>
+
+        <form id="submit-form" name="submit-form">
+        </form>
+
       </div>
     );
   }
