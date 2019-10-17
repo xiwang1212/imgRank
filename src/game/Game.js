@@ -89,7 +89,8 @@ class Game extends Component {
     //   this.props.history.push('/'); // prevent people from directly accessing
     // }
     // TODO: Verify this is the correct placement of this logic in React App.
-    var data = require('../hit_jsons/' + this.gup("task") + ".json");
+    // var data = require("../hit_jsons/" + this.gup("task") + ".json");
+    var data = require("../hit_jsons/refs1_fold_0.json");
     console.log("data: ", data);
     this.setState({
       sets: data,
