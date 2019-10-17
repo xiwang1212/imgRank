@@ -23,7 +23,8 @@ const grid = 8;
 const maxLevels = 10;
 const SERVER_URL = "http://localhost:5000/"
 const MTURK_SUBMIT_SUFFIX = "/mturk/externalSubmit";
-
+const MTURK_SUBMIT = "https://www.mturk.com/mturk/externalSubmit";
+const SANDBOX_SUBMIT = "https://workersandbox.mturk.com/mturk/externalSubmit";
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
@@ -191,7 +192,8 @@ class Game extends Component {
 
 
   submitHIT() {
-      var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
+      // var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
+      var submitUrl = SANDBOX_SUBMIT;
       this.state.result['WorkerId'] = this.gup("workerId");
       this.state.result['AssignmentId'] = this.gup("assignmentId");
       fetch(submitUrl, {method: 'POST', mode: 'no-cors', body: JSON.stringify(this.state.result)})
