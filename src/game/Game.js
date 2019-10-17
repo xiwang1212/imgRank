@@ -9,6 +9,8 @@ import "react-sweet-progress/lib/style.css";
 import CloseIcon from '@material-ui/icons/Close';
 import ErrorIcon from '@material-ui/icons/Error';
 
+import $ from 'jquery';
+
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -54,7 +56,7 @@ const { JSDOM } = jsdom;
 const { window } = new JSDOM();
 const { document } = (new JSDOM('')).window;
 global.document = document;
-var $ = jQuery = require('jquery')(window);
+// var $ = jQuery = require('jquery')(window);
 
 
 class Game extends Component {
@@ -179,6 +181,14 @@ class Game extends Component {
     });
   }
 
+  addHiddenField(form, name, value) {
+      // form is a jQuery object, name and value are strings
+      var input = $("<input type='hidden' name='" + name + "' value=''>");
+      input.val(value);
+      form.append(input);
+  }
+
+
   submitHIT() {
       var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
       this.state.result['WorkerId'] = this.gup("workerId");
@@ -201,14 +211,14 @@ class Game extends Component {
 
       var form = $("#submit-form");
 
-      addHiddenField(form, 'assignmentId', this.gup("assignmentId"));
-      addHiddenField(form, 'workerId', this.gup("workerId"));
+      this.addHiddenField(form, 'assignmentId', this.gup("assignmentId"));
+      this.addHiddenField(form, 'workerId', this.gup("workerId"));
       var results = {
           'outputs': this.state.result
       };
 
       console.log("results", results);
-      addHiddenField(form, 'results', JSON.stringify(results));
+      this.addHiddenField(form, 'results', JSON.stringify(results));
       // addHiddenField(form, 'feedback', $("#feedback-input").val());
 
       $("#submit-form").attr("action", submitUrl);
@@ -220,14 +230,6 @@ class Game extends Component {
       // $("#submit-button").addClass("disabled");
   }
 
-  addHiddenField(form, name, value) {
-      // form is a jQuery object, name and value are strings
-      var input = $("<input type='hidden' name='" + name + "' value=''>");
-      input.val(value);
-      form.append(input);
-  }
-
-
   _handleClick = () => {
     var currentResult = this.state.sets[this.state.currentLevel - 1]
     currentResult['human_ordering'] = this.state.ordering;
@@ -236,7 +238,7 @@ class Game extends Component {
     if (this.state.percent === 100) {
       this.setState({disabled: true});
       console.log("this is what is submitted: ", this.state.result);
-      this.submitHIT();
+      this.submitHITform();
       return;
       // const dummy_data = { 'rankings': [1, 2, 3] };
       // this.postTaskResponse(dummy_data).then(resp => console.log(resp));
