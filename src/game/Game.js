@@ -216,8 +216,12 @@ class Game extends Component {
       var form = $("#submit-form");
 
       console.log("Gup output for assignmentId, workerId:", this.gup("assignmentId"),this.gup("workerId"))
-      this.addHiddenField(form, 'assignmentId', this.gup("assignmentId"));
-      this.addHiddenField(form, 'workerId', this.gup("workerId"));
+      // this.addHiddenField(form, 'assignmentId', this.gup("assignmentId"));
+      // this.addHiddenField(form, 'workerId', this.gup("workerId"));
+      this.addHiddenField(form, 'assignmentId', '3KMS4QQVK553U5INCHN7V4M3YOHFKM');
+      this.addHiddenField(form, 'workerId', 'AGCAOVRI9OYIQ');
+
+
       var results = {
           'outputs': this.state.result
       };
