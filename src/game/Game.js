@@ -54,8 +54,8 @@ const { JSDOM } = jsdom;
 const { window } = new JSDOM();
 const { document } = (new JSDOM('')).window;
 global.document = document;
-
 var $ = jQuery = require('jquery')(window);
+
 
 class Game extends Component {
 
@@ -201,7 +201,7 @@ class Game extends Component {
 
       var form = $("#submit-form");
 
-      addHiddenField(form, 'assignmentId', this.gup("assignmentId");
+      addHiddenField(form, 'assignmentId', this.gup("assignmentId"));
       addHiddenField(form, 'workerId', this.gup("workerId"));
       var results = {
           'outputs': this.state.result
