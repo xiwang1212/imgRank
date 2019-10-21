@@ -360,6 +360,9 @@ class Game extends Component {
                                   provided.draggableProps.style
                                 )}
                               >
+                              <Typography variant='h6' style={{ color: 'white' }}>
+                                {index}
+                              </Typography>
                                 <div className={classes.videoContainer}>
                                   <video
                                     src={this.state.unknownVideos[vidRef]}
