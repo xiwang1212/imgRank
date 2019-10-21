@@ -75,7 +75,7 @@ class Game extends Component {
       unknownVideos: {},
       ordering: [],
       result: [],
-      // groundTruth: 'vidRef0',
+      groundTruth: [],
       workerId: this.gup('workerId') || 'dummy_id',
       chances: 1,
       vigilants: [],
@@ -117,6 +117,7 @@ class Game extends Component {
       refVideos: currentSet['reference_videos'],
       unknownVideos: unknownVideos,
       ordering: currentSet['videos_to_rank'],
+      groundTruth: currentSet['order'],
     })
   }
 
@@ -360,9 +361,7 @@ class Game extends Component {
                                   provided.draggableProps.style
                                 )}
                               >
-                              <Typography variant='h6' style={{ color: 'white' }}>
-                                {index}
-                              </Typography>
+
                                 <div className={classes.videoContainer}>
                                   <video
                                     src={this.state.unknownVideos[vidRef]}
@@ -372,6 +371,9 @@ class Game extends Component {
                                     muted
                                     loop />
                                 </div>
+                                <Typography variant='h6' style={{ color: 'white' }}>
+                                  {this.state.groundTruth[index].toString(10)}
+                                </Typography>
                                 <Typography variant='h5' style={{ color: 'white' }}>
                                   {labels[index]}
                                 </Typography>
