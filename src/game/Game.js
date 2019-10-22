@@ -71,6 +71,7 @@ class Game extends Component {
       workerId: this.gup('workerId') || 'dummy_id',
       chances: 1,
       vigilants: [],
+      common_ancestor: '',
     };
     this.onDragEnd = this.onDragEnd.bind(this);
 
@@ -92,6 +93,7 @@ class Game extends Component {
       unknownVideos: unknownVideos,
       ordering: currentSet['videos_to_rank'],
       groundTruth: currentSet['order'],
+      common_ancestor: currentSet['common'],
     })
   }
 
@@ -250,6 +252,11 @@ class Game extends Component {
           <Typography variant="h5">
             Reference Videos
           </Typography>
+          /* DEBUG */
+          <Typography variant="h5">
+            Common ancestor: {this.state.common_ancestor}
+          </Typography>
+          /* END DEBUG */
           <div className={classes.referenceSection}>
             <div className={classes.referenceBackground}>
               {
@@ -306,9 +313,16 @@ class Game extends Component {
                                     muted
                                     loop />
                                 </div>
+
+                                /* DEBUG */
+                                <Typography variant='h6' style={{ color: 'white' }}>
+                                  {this.state.unknownVideos[vidRef]}
+                                </Typography>
                                 <Typography variant='h6' style={{ color: 'white' }}>
                                   {this.state.groundTruth[index].toString(10)}
                                 </Typography>
+                                /* END DEBUG */
+
                                 <Typography variant='h5' style={{ color: 'white' }}>
                                   {labels[index]}
                                 </Typography>
