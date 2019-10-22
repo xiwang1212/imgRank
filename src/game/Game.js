@@ -253,7 +253,7 @@ class Game extends Component {
             Reference Videos
           </Typography>
           <!-- DEBUG -->
-          <Typography variant="h5">
+          <Typography variant="h7">
             Common ancestor: {this.state.common_ancestor}
           </Typography>
           <!-- END DEBUG -->
@@ -315,10 +315,10 @@ class Game extends Component {
                                 </div>
 
                                 <!-- DEBUG -->
-                                <Typography variant='h6' style={{ color: 'white' }}>
+                                <Typography variant='h7' style={{ color: 'white' }}>
                                   {this.state.unknownVideos[vidRef].split('/').slice(-2)}
                                 </Typography>
-                                <Typography variant='h6' style={{ color: 'white' }}>
+                                <Typography variant='h7' style={{ color: 'white' }}>
                                   {this.state.groundTruth[index].toString(10)}
                                 </Typography>
                                 <!-- END DEBUG -->
