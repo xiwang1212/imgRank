@@ -252,11 +252,13 @@ class Game extends Component {
           <Typography variant="h5">
             Reference Videos
           </Typography>
-          <!-- DEBUG -->
+
+          /* DEBUG */
           <Typography variant="h7">
             Common ancestor: {this.state.common_ancestor}
           </Typography>
-          <!-- END DEBUG -->
+          /* DEBUG */
+
           <div className={classes.referenceSection}>
             <div className={classes.referenceBackground}>
               {
@@ -314,14 +316,14 @@ class Game extends Component {
                                     loop />
                                 </div>
 
-                                <!-- DEBUG -->
+                                /* DEBUG */
                                 <Typography variant='h7' style={{ color: 'white' }}>
                                   {this.state.unknownVideos[vidRef].split('/').slice(-2)}
                                 </Typography>
                                 <Typography variant='h7' style={{ color: 'white' }}>
                                   {this.state.groundTruth[index].toString(10)}
                                 </Typography>
-                                <!-- END DEBUG -->
+                                /* DEBUG */
 
                                 <Typography variant='h5' style={{ color: 'white' }}>
                                   {labels[index]}
