@@ -272,6 +272,11 @@ class Game extends Component {
                       autoPlay
                       muted
                       loop />
+                    /* DEBUG */
+                    <Typography variant="h7">
+                      {this.state.refVideos[vidRef].split('/').slice(-2,-1)}
+                    </Typography>
+                    /* DEBUG */
                   </div>
                 ))
               }
@@ -318,9 +323,10 @@ class Game extends Component {
 
                                 /* DEBUG */
                                 <Typography variant='h7' style={{ color: 'white' }}>
-                                  {this.state.unknownVideos[vidRef].split('/').slice(-2)}
+                                  {this.state.unknownVideos[vidRef].split('/').slice(-2,-1)}
                                 </Typography>
-                                <Typography variant='h7' style={{ color: 'white' }}>
+
+                                <Typography variant='h6' style={{ color: 'white' }}>
                                   {this.state.groundTruth[index].toString(10)}
                                 </Typography>
                                 /* DEBUG */
