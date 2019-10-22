@@ -67,6 +67,7 @@ class Game extends Component {
       unknownVideos: {},
       ordering: [],
       result: [],
+      groundTruth: [],
       workerId: this.gup('workerId') || 'dummy_id',
       chances: 1,
       vigilants: [],
@@ -90,6 +91,7 @@ class Game extends Component {
       refVideos: currentSet['reference_videos'],
       unknownVideos: unknownVideos,
       ordering: currentSet['videos_to_rank'],
+      groundTruth: currentSet['order'],
     })
   }
 
@@ -126,22 +128,10 @@ class Game extends Component {
   }
 
   retrieveRefVid() {
-    // var videos = {}
-    // for (let i = 0; i < 3; i++) {
-    // videos[dummy_videos[i]] = RELATIVE_PATH + dummy_videos[i];
-    // }
-    // TODO: Update once we have better test data.
     return this.state.refVideos
   }
 
   retrieveUnknownVid() {
-    // var videos = {}
-    // for (var i = 0; i < 5; i++) {
-    // videos[dummy_videos[i]] = RELATIVE_PATH + dummy_videos[i];
-    // }
-    // this.setState({ ordering: Object.keys(videos) });
-    // return videos;
-    // TODO: Update once we have better test data.
     return this.state.unknownVideos;
   }
 
@@ -184,8 +174,6 @@ class Game extends Component {
 
   submitHITform() {
       var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
-      // var submitUrl = SANDBOX_SUBMIT;
-
       var form = $("#submit-form");
 
       console.log("Gup output for assignmentId, workerId:", this.gup("assignmentId"),this.gup("workerId"))
@@ -309,6 +297,7 @@ class Game extends Component {
                                   provided.draggableProps.style
                                 )}
                               >
+
                                 <div className={classes.videoContainer}>
                                   <video
                                     src={this.state.unknownVideos[vidRef]}
@@ -317,6 +306,9 @@ class Game extends Component {
                                     muted
                                     loop />
                                 </div>
+                                <Typography variant='h6' style={{ color: 'white' }}>
+                                  {this.state.groundTruth[index].toString(10)}
+                                </Typography>
                                 <Typography variant='h5' style={{ color: 'white' }}>
                                   {labels[index]}
                                 </Typography>
