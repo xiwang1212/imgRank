@@ -67,6 +67,7 @@ export const styles = theme => ({
   },
   videoPlayerUnknown: {
     width: 280,
+    zIndex: -1,
     [theme.breakpoints.down('md')]: {
       width: 240,
     }

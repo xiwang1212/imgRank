@@ -23,8 +23,6 @@ const grid = 8;
 const maxLevels = 10;
 const SERVER_URL = "http://localhost:5000/"
 const MTURK_SUBMIT_SUFFIX = "/mturk/externalSubmit";
-const MTURK_SUBMIT = "https://www.mturk.com/mturk/externalSubmit";
-const SANDBOX_SUBMIT = "https://workersandbox.mturk.com/mturk/externalSubmit";
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
@@ -34,7 +32,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
   // change background colour if dragging
   background: isDragging ? 'lightgreen' : '#000000',
-
+  opacity: 0.9,
   borderRadius: 8,
   // styles we need to apply on draggables
   ...draggableStyle,
@@ -51,13 +49,7 @@ const getListStyle = isDraggingOver => ({
 });
 
 
-// Testing Jquery + nodejs
 var jsdom = require("jsdom");
-// const { JSDOM } = jsdom;
-// const { window } = new JSDOM();
-// const { document } = (new JSDOM('')).window;
-// global.document = document;
-// var $ = jQuery = require('jquery')(window);
 
 class Game extends Component {
 
@@ -75,7 +67,6 @@ class Game extends Component {
       unknownVideos: {},
       ordering: [],
       result: [],
-      // groundTruth: 'vidRef0',
       workerId: this.gup('workerId') || 'dummy_id',
       chances: 1,
       vigilants: [],
@@ -85,28 +76,10 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    // if (this.props.history.action === "POP") {
-    //   this.props.history.push('/'); // prevent people from directly accessing
-    // }
-    // TODO: Verify this is the correct placement of this logic in React App.
-    console.log("gup: ", this.gup("task"));
     var data = require("../hit_jsons/" + this.gup("task") + ".json");
-    // var data = require("../hit_jsons/refs1_fold_0.json");
-    console.log("data: ", data);
     this.setState({
       sets: data,
     }, () => this.updateVideos());
-    // this.fetchTaskData(this.state.workerId).then(res => {
-    //   const refVideos = {}, rankVideos = {};
-    //   res.refVideos.map((val) => refVideos[val] = RELATIVE_PATH + val);
-    //   res.rankVideos.map((val) => rankVideos[val] = RELATIVE_PATH + val);
-    //   this.setState({
-    //     refVideos: refVideos,
-    //     unknownVideos: rankVideos,
-    //     ordering: Object.keys(rankVideos)
-    //   })
-    // });
-
   }
 
   updateVideos() {
@@ -218,25 +191,14 @@ class Game extends Component {
       console.log("Gup output for assignmentId, workerId:", this.gup("assignmentId"),this.gup("workerId"))
       this.addHiddenField(form, 'assignmentId', this.gup("assignmentId"));
       this.addHiddenField(form, 'workerId', this.gup("workerId"));
-      // this.addHiddenField(form, 'assignmentId', '3KMS4QQVK553U5INCHN7V4M3YOHFKM');
-      // this.addHiddenField(form, 'workerId', 'AGCAOVRI9OYIQ');
-
-
       var results = {
           'outputs': this.state.result
       };
-
-      console.log("results", results);
       this.addHiddenField(form, 'results', JSON.stringify(results));
-      // addHiddenField(form, 'feedback', $("#feedback-input").val());
 
       $("#submit-form").attr("action", submitUrl);
       $("#submit-form").attr("method", "POST");
       $("#submit-form").submit();
-
-      // $("#submit-button").removeClass("loading");
-      // generateMessage("positive", "Thanks! Your task was submitted successfully.");
-      // $("#submit-button").addClass("disabled");
   }
 
   _handleClick = () => {
@@ -249,19 +211,7 @@ class Game extends Component {
       console.log("this is what is submitted: ", this.state.result);
       this.submitHITform();
       return;
-      // const dummy_data = { 'rankings': [1, 2, 3] };
-      // this.postTaskResponse(dummy_data).then(resp => console.log(resp));
-
     }
-    console.log("current ordering: ", this.state.ordering);
-    // if (this.state.ordering[0] !== this.state.groundTruth) {
-    //   if (this.state.chances === 0) {
-    //     this.props.history.push('/failure');
-    //   }
-    //   this._handleSnackbarOpen("The ordering for a vigilant is incorrect, you have one chance to correct it.");
-    //   this.setState({ chances: this.state.chances - 1 });
-    //   return;
-    // }
 
     this.setState({
       currentLevel: this.state.currentLevel + 1,
@@ -283,7 +233,6 @@ class Game extends Component {
   render() {
     const { classes } = this.props;
     var labels = ["Least Similar", "Less Similar", "Similar", "More Similar", "Most Similar"];
-    console.log("#state: ", this.state);
     return (
       <div className={classes.root}>
         <Typography variant="h3">
@@ -363,7 +312,6 @@ class Game extends Component {
                                 <div className={classes.videoContainer}>
                                   <video
                                     src={this.state.unknownVideos[vidRef]}
-                                    type="video/mp4"
                                     className={classes.videoPlayerUnknown}
                                     autoPlay
                                     muted
