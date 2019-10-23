@@ -21,8 +21,9 @@ const reorder = (list, startIndex, endIndex) => {
 
 const grid = 8;
 const maxLevels = 10;
-const SERVER_URL = "http://localhost:5000/"
+const SERVER_URL = "http://localhost:5000/";
 const MTURK_SUBMIT_SUFFIX = "/mturk/externalSubmit";
+const DEBUG = false;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
@@ -253,11 +254,11 @@ class Game extends Component {
             Reference Videos
           </Typography>
 
-          {if (debug) {
+          { DEBUG &&
           <Typography variant="h7">
             Common ancestor: {this.state.common_ancestor}
           </Typography>
-          }}
+          }
 
           <div className={classes.referenceSection}>
             <div className={classes.referenceBackground}>
