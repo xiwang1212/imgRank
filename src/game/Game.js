@@ -21,8 +21,9 @@ const reorder = (list, startIndex, endIndex) => {
 
 const grid = 8;
 const maxLevels = 10;
-const SERVER_URL = "http://localhost:5000/"
+const SERVER_URL = "http://localhost:5000/";
 const MTURK_SUBMIT_SUFFIX = "/mturk/externalSubmit";
+const DEBUG = false;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
@@ -70,6 +71,7 @@ class Game extends Component {
       chances: 1,
       vigilants: [],
       timer: Date.now(),
+      common_ancestor: '',
     };
     this.onDragEnd = this.onDragEnd.bind(this);
 
@@ -91,6 +93,7 @@ class Game extends Component {
       unknownVideos: unknownVideos,
       ordering: currentSet['videos_to_rank'],
       groundTruth: currentSet['order'],
+      common_ancestor: currentSet['common'],
     })
   }
 
@@ -196,6 +199,13 @@ class Game extends Component {
           <Typography variant="h5">
             Reference Videos
           </Typography>
+
+          { DEBUG &&
+          <Typography variant="h7">
+            Common ancestor: {this.state.common_ancestor}
+          </Typography>
+          }
+
           <div className={classes.referenceSection}>
             <div className={classes.referenceBackground}>
               {
@@ -209,6 +219,13 @@ class Game extends Component {
                       autoPlay
                       muted
                       loop />
+                    {
+                    // {/* DEBUG */}
+                    // <Typography variant="h7">
+                    //   {this.state.refVideos[vidRef].split('/').slice(-2,-1)}
+                    // </Typography>
+                    // {/* DEBUG */}
+                    }
                   </div>
                 ))
               }
@@ -252,9 +269,19 @@ class Game extends Component {
                                     muted
                                     loop />
                                 </div>
-                                <Typography variant='h6' style={{ color: 'white' }}>
-                                  {this.state.groundTruth[index].toString(10)}
-                                </Typography>
+
+                                {
+                                // {/* DEBUG */}
+                                // <Typography variant='h7' style={{ color: 'white' }}>
+                                //   {this.state.unknownVideos[vidRef].split('/').slice(-2,-1)}
+                                // </Typography>
+                                //
+                                // <Typography variant='h6' style={{ color: 'white' }}>
+                                //   {this.state.groundTruth[index].toString(10)}
+                                // </Typography>
+                                // {/* DEBUG */}
+                                }
+
                                 <Typography variant='h5' style={{ color: 'white' }}>
                                   {labels[index]}
                                 </Typography>
