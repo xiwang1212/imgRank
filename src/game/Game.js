@@ -57,8 +57,6 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      snackbarOpen: false,
-      snackBarMsg: '',
       disabled: false,
       currentLevel: 1,
       sets: [],
@@ -71,6 +69,7 @@ class Game extends Component {
       workerId: this.gup('workerId') || 'dummy_id',
       chances: 1,
       vigilants: [],
+      timer: Date.now(),
     };
     this.onDragEnd = this.onDragEnd.bind(this);
 
@@ -104,29 +103,6 @@ class Game extends Component {
     else return results[1];
   }
 
-  async fetchTaskData(workerId) {
-    // TODO: Discuss endpoint design.
-    const url = SERVER_URL + `workerId?workerId=${workerId}`;
-    const response =
-      await fetch(url, {
-        headers: { 'Content-Type': 'application/json' }
-      });
-    return await response.json()
-  }
-
-  async postTaskResponse(data) {
-    // TODO: Discuss endpoint design.
-    const url = SERVER_URL + 'response';
-    const response =
-      await fetch(url,
-        {
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers: { 'Content-Type': 'application/json' }
-        });
-    return await response.json();
-  }
-
   retrieveRefVid() {
     return this.state.refVideos
   }
@@ -153,25 +129,6 @@ class Game extends Component {
       form.append(input);
   }
 
-
-  submitHIT() {
-      var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
-      // var submitUrl = SANDBOX_SUBMIT;
-      this.state.result['WorkerId'] = this.gup("workerId");
-      this.state.result['AssignmentId'] = this.gup("assignmentId");
-      fetch(submitUrl, {method: 'POST', mode: 'no-cors', body: JSON.stringify(this.state.result)})
-          .then(res => {
-            console.log("returning: ", res.json());
-            return res.json();
-          })
-          .then(data => {
-              console.log("returning2: ", data);
-          })
-          .catch(err => {
-              console.log("returning3: ", err);
-          });
-  }
-
   submitHITform() {
       var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
       var form = $("#submit-form");
@@ -179,11 +136,11 @@ class Game extends Component {
       console.log("Gup output for assignmentId, workerId:", this.gup("assignmentId"),this.gup("workerId"))
       this.addHiddenField(form, 'assignmentId', this.gup("assignmentId"));
       this.addHiddenField(form, 'workerId', this.gup("workerId"));
+      this.addHiddenField(form, 'taskTime', (Date.now() - this.state.timer)/1000);
       var results = {
           'outputs': this.state.result
       };
       this.addHiddenField(form, 'results', JSON.stringify(results));
-
       $("#submit-form").attr("action", submitUrl);
       $("#submit-form").attr("method", "POST");
       $("#submit-form").submit();
@@ -205,17 +162,6 @@ class Game extends Component {
       currentLevel: this.state.currentLevel + 1,
       percent: Math.round(Math.min((this.state.currentLevel + 1) / maxLevels * 100, 100)),
     }, () => this.updateVideos());
-  }
-
-  _handleSnackbarOpen(msg) {
-    this.setState({
-      snackbarOpen: true,
-      snackbarMsg: msg,
-    })
-  }
-
-  _handleSnackbarClose = (event, reason) => {
-    this.setState({ snackbarOpen: false });
   }
 
   render() {
