@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6d06e7269a83b9f413f9ec775d67713b",
+    "revision": "0925fc63b46c38628c68a2bad9f8a968",
     "url": "/vidrank/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/vidrank/static/css/2.533d620f.chunk.css"
   },
   {
-    "revision": "e85d4d9f96d706c9dbe7",
+    "revision": "cf1cbb2de5c442f8be4e",
     "url": "/vidrank/static/css/main.4bc23541.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/vidrank/static/js/2.8563d64e.chunk.js"
   },
   {
-    "revision": "e85d4d9f96d706c9dbe7",
-    "url": "/vidrank/static/js/main.9bb2b521.chunk.js"
+    "revision": "cf1cbb2de5c442f8be4e",
+    "url": "/vidrank/static/js/main.c3df4072.chunk.js"
   },
   {
     "revision": "316182382b8dd7ad4912",
