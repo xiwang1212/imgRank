@@ -19,9 +19,9 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
+const VIGILANCE = 'vigilance';
 const grid = 8;
 const maxLevels = 10;
-const SERVER_URL = "http://localhost:5000/";
 const MTURK_SUBMIT_SUFFIX = "/mturk/externalSubmit";
 const DEBUG = false;
 
@@ -58,6 +58,8 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      snackbarOpen: false,
+      snackBarMsg: '',
       disabled: false,
       currentLevel: 1,
       sets: [],
@@ -69,7 +71,7 @@ class Game extends Component {
       groundTruth: [],
       workerId: this.gup('workerId') || 'dummy_id',
       chances: 1,
-      vigilants: [],
+      wrong_vigilants: [],
       timer: Date.now(),
       common_ancestor: '',
     };
@@ -86,12 +88,16 @@ class Game extends Component {
 
   updateVideos() {
     const currentSet = this.state.sets[this.state.currentLevel-1]
+    var order = currentSet['videos_to_rank'];
     const unknownVideos = {};
     currentSet['videos_to_rank'].forEach((vid) => unknownVideos[vid] = vid);
+    if (this.state.result.length >= this.state.currentLevel) {
+      order = this.state.result[this.state.currentLevel - 1]['human_ordering'];
+    }
     this.setState({
       refVideos: currentSet['reference_videos'],
       unknownVideos: unknownVideos,
-      ordering: currentSet['videos_to_rank'],
+      ordering: order,
       groundTruth: currentSet['order'],
       common_ancestor: currentSet['common'],
     })
@@ -133,30 +139,73 @@ class Game extends Component {
   }
 
   submitHITform() {
-      var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
-      var form = $("#submit-form");
+    var num_wrong = this.state.wrong_vigilants.length;
+    if (num_wrong > 1) {
+      var msg = "There are " + num_wrong + " rankings that are clearly wrong, which " +
+                "we check to make sure the task is done properly. Please press the back " +
+                "button to correct these mistakes. You will not be allowed to submit until " +
+                "you do so."
+      this._handleSnackbarOpen(msg)
+      console.log("results: ", this.state.result);
+      return;
+    }
+    this.setState({disabled: true});
+    var submitUrl = decodeURIComponent(this.gup("turkSubmitTo")) + MTURK_SUBMIT_SUFFIX;
+    var form = $("#submit-form");
 
-      console.log("Gup output for assignmentId, workerId:", this.gup("assignmentId"),this.gup("workerId"))
-      this.addHiddenField(form, 'assignmentId', this.gup("assignmentId"));
-      this.addHiddenField(form, 'workerId', this.gup("workerId"));
-      this.addHiddenField(form, 'taskTime', (Date.now() - this.state.timer)/1000);
-      var results = {
-          'outputs': this.state.result
-      };
-      this.addHiddenField(form, 'results', JSON.stringify(results));
-      $("#submit-form").attr("action", submitUrl);
-      $("#submit-form").attr("method", "POST");
-      $("#submit-form").submit();
+    console.log("Gup output for assignmentId, workerId:", this.gup("assignmentId"),this.gup("workerId"))
+    this.addHiddenField(form, 'assignmentId', this.gup("assignmentId"));
+    this.addHiddenField(form, 'workerId', this.gup("workerId"));
+    this.addHiddenField(form, 'taskTime', (Date.now() - this.state.timer)/1000);
+    var results = {
+        'outputs': this.state.result
+    };
+    this.addHiddenField(form, 'results', JSON.stringify(results));
+    $("#submit-form").attr("action", submitUrl);
+    $("#submit-form").attr("method", "POST");
+    $("#submit-form").submit();
+  }
+
+  _handleBackClick = () => {
+    if (this.state.currentLevel == 1) {
+      return;
+    }
+    this.setState({
+      currentLevel: this.state.currentLevel - 1,
+      percent: Math.round(Math.min((this.state.currentLevel - 1) / maxLevels * 100, 100)),
+    }, () => this.updateVideos());
   }
 
   _handleClick = () => {
     var currentResult = this.state.sets[this.state.currentLevel - 1]
     currentResult['human_ordering'] = this.state.ordering;
-    this.state.result.push(currentResult);
+    // Check the vigilant
+    if (currentResult['common'] == VIGILANCE) {
+      for (let i = 0; i < currentResult['order'].length; i++) {
+        if (currentResult['order'][i].length == 1) {
+          let index = currentResult['order'][i][0];
+          var video = currentResult['videos_to_rank'][index];
+          if (video !== this.state.ordering[i]) {
+            if (!this.state.wrong_vigilants.includes(video)) {
+              this.state.wrong_vigilants.push(video);
+            }
+          } else {
+            if (this.state.wrong_vigilants.includes(video)) {
+              this.state.wrong_vigilants = this.state.wrong_vigilants.filter(val => val !== video);
+            }
+          }
+        }
+      }
+    }
+
+    if (this.state.result.length >= this.state.currentLevel) {
+      this.state.result[this.state.currentLevel - 1] = currentResult;
+    } else {
+      this.state.result.push(currentResult);
+    }
+
     // Something that sends the results of ordering to server
     if (this.state.percent === 100) {
-      this.setState({disabled: true});
-      console.log("this is what is submitted: ", this.state.result);
       this.submitHITform();
       return;
     }
@@ -165,6 +214,17 @@ class Game extends Component {
       currentLevel: this.state.currentLevel + 1,
       percent: Math.round(Math.min((this.state.currentLevel + 1) / maxLevels * 100, 100)),
     }, () => this.updateVideos());
+  }
+
+  _handleSnackbarOpen(msg) {
+    this.setState({
+      snackbarOpen: true,
+      snackbarMsg: msg,
+    });
+  }
+
+  _handleSnackbarClose = () => {
+    this.setState({snackbarOpen: false});
   }
 
   render() {
@@ -298,6 +358,9 @@ class Game extends Component {
           </div>
         </div>
         <div className={classes.buttonSection}>
+          <Button variant="contained" className={classes.backButton} onClick={this._handleBackClick}>
+            BACK
+          </Button>
           <Button variant="contained" disabled={this.state.disabled} className={classes.nextButton} onClick={this._handleClick}>
             {this.state.percent === 100 ? "FINISH" : "NEXT"}
           </Button>
@@ -307,7 +370,7 @@ class Game extends Component {
               horizontal: 'left',
             }}
             open={this.state.snackbarOpen}
-            autoHideDuration={3000}
+            autoHideDuration={5000}
             onClose={this._handleSnackbarClose}
             style={{ flexWrap: "nowrap!important" }}
           >

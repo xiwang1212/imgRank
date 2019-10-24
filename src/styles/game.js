@@ -7,6 +7,20 @@ export const styles = theme => ({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
   },
+  backButton: {
+    borderRadius: 16,
+    fontSize: 36,
+    width: 256,
+    maxWidth: '60%',
+    paddingLeft: 16,
+    paddingRight: 16,
+    marginRight: 16,
+    [theme.breakpoints.down('md')]: {
+      marginRight: 0,
+      marginTop: 8,
+      marginBottom: 8,
+    },
+  },
   buttonSection: {
     display: 'flex',
     position: 'relative',
@@ -20,10 +34,10 @@ export const styles = theme => ({
   nextButton: {
     borderRadius: 16,
     fontSize: 36,
-    width: 570,
-    maxWidth: '80%',
-    paddingLeft: 32,
-    paddingRight: 32,
+    width: 256,
+    maxWidth: '60%',
+    paddingLeft: 16,
+    paddingRight: 16,
   },
   progressSection: {
     display: 'flex',
