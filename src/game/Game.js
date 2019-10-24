@@ -146,7 +146,6 @@ class Game extends Component {
                 "button to correct these mistakes. You will not be allowed to submit until " +
                 "you do so."
       this._handleSnackbarOpen(msg)
-      console.log("results: ", this.state.result);
       return;
     }
     this.setState({disabled: true});
