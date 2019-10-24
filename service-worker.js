@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/vidrank/precache-manifest.f232155fd9c8d1018cf9a2d0f455c449.js"
+  "/vidrank/precache-manifest.a269a7ac067e7360a47ea3f1bf6574e2.js"
 );
 
 self.addEventListener('message', (event) => {
