@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { styles } from './styles/landing';
 import { Typography, Button } from '@material-ui/core';
 import { Link } from "react-router-dom";
-import videoDemo from './vidrank_final.mp4';
 import tmp from './tmp.png';
 import StepOne from './example1.png';
 import StepTwo from './ranking.png';
