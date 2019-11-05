@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { styles } from './styles/landing';
 import { Typography, Button } from '@material-ui/core';
 import { Link } from "react-router-dom";
+import videoDemo from './vidrank_final.mp4';
 import tmp from './tmp.png';
 import StepOne from './example1.png';
 import StepTwo from './ranking.png';
@@ -68,6 +69,8 @@ class Landing extends Component {
           <Typography variant="h4" className={classes.descriptionTitle}>
               Demo:
           </Typography>
+          <video className={classes.centerVideo} src={videoDemo} controls>
+          </video>
         </div>
         <div className={classes.buttonSection}>
           <Link to={{pathname:"/game", search: this.props.location.search}} style={{ textDecoration: 'none' }}>
