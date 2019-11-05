@@ -69,6 +69,9 @@ class Landing extends Component {
           <Typography variant="h4" className={classes.descriptionTitle}>
               Demo:
           </Typography>
+          <Typography>
+            test
+          </Typography>
           <video className={classes.centerVideo} src={videoDemo} controls>
           </video>
         </div>
