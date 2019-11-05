@@ -3,10 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { styles } from './styles/landing';
 import { Typography, Button } from '@material-ui/core';
 import { Link } from "react-router-dom";
-import tmp from './tmp.png';
-import StepOne from './example1.png';
-import StepTwo from './ranking.png';
-import StepThree from './button.png';
 
 class Landing extends Component {
 
@@ -68,6 +64,7 @@ class Landing extends Component {
           <Typography variant="h4" className={classes.descriptionTitle}>
               Demo Check Refresh:
           </Typography>
+          <iframe src="https://drive.google.com/file/d/1XhUB8g6gkWaDeaNhkQbzWs4LA0QBPbP9/preview" width="640" height="480"></iframe>
         </div>
         <div className={classes.buttonSection}>
           <Link to={{pathname:"/game", search: this.props.location.search}} style={{ textDecoration: 'none' }}>
