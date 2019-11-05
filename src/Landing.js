@@ -67,10 +67,8 @@ class Landing extends Component {
             </div>
           </div>
           <Typography variant="h4" className={classes.descriptionTitle}>
-              Demo:
+              Demo Check Refresh:
           </Typography>
-          <video className={classes.centerVideo} src={videoDemo} controls>
-          </video>
         </div>
         <div className={classes.buttonSection}>
           <Link to={{pathname:"/game", search: this.props.location.search}} style={{ textDecoration: 'none' }}>
