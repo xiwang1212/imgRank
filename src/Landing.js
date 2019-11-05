@@ -62,9 +62,8 @@ class Landing extends Component {
             </div>
           </div>
           <Typography variant="h4" className={classes.descriptionTitle}>
-              Demo Check Refresh:
+              Demo:
           </Typography>
-          <iframe src="https://drive.google.com/file/d/1XhUB8g6gkWaDeaNhkQbzWs4LA0QBPbP9/preview" width="640" height="480"></iframe>
         </div>
         <div className={classes.buttonSection}>
           <Link to={{pathname:"/game", search: this.props.location.search}} style={{ textDecoration: 'none' }}>
