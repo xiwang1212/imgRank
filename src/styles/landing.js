@@ -10,12 +10,19 @@ export const styles = theme => ({
     display: 'flex',
     paddingBottom: 16,
   },
+  centerVideo: {
+    display: 'flex',
+    width: 960,
+    height: 720,
+    justifyContent: 'center',
+  },
   descriptionSection: {
     display: 'flex',
     padding: 16,
     height: '65%',
     width: '100vw',
     flexDirection: 'column',
+    alignItems: 'center',
   },
   descriptionTitle: {
     paddingBottom: 16,
