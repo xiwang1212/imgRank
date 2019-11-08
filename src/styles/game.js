@@ -38,6 +38,23 @@ export const styles = theme => ({
     maxWidth: '60%',
     paddingLeft: 16,
     paddingRight: 16,
+    marginRight: 16,
+    [theme.breakpoints.down('md')]: {
+      marginRight: 0,
+      marginTop: 8,
+      marginBottom: 8,
+    },
+  },
+  feedbackArea: {
+    width: 256,
+    marginBottom: 16,
+    [theme.breakpoints.down('md')]: {
+      marginTop: 8,
+      marginBottom: 8,
+    },
+  },
+  feedbackBox: {
+    width: '100%',
   },
   progressSection: {
     display: 'flex',
