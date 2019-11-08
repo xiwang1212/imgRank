@@ -21,7 +21,7 @@ const reorder = (list, startIndex, endIndex) => {
 
 const VIGILANCE = 'vigilance';
 const grid = 8;
-const maxLevels = 10;
+const maxLevels = 13;
 const MTURK_SUBMIT_SUFFIX = "/mturk/externalSubmit";
 const DEBUG = false;
 
@@ -331,7 +331,7 @@ class Game extends Component {
                                 <Typography variant='h7' style={{ color: 'white' }}>
                                   {this.state.unknownVideos[vidRef].split('/').slice(-2,-1)}
                                 </Typography>
-                                
+
                                 <Typography variant='h6' style={{ color: 'white' }}>
                                   {this.state.groundTruth[index].toString(10)}
                                 </Typography>
