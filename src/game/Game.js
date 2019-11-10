@@ -156,6 +156,8 @@ class Game extends Component {
     this.addHiddenField(form, 'assignmentId', this.gup("assignmentId"));
     this.addHiddenField(form, 'workerId', this.gup("workerId"));
     this.addHiddenField(form, 'taskTime', (Date.now() - this.state.timer)/1000);
+    this.addHiddenField(form, 'feedback', $("#feedback-input").val());
+
     var results = {
         'outputs': this.state.result
     };
@@ -359,6 +361,14 @@ class Game extends Component {
           <Button variant="contained" disabled={this.state.disabled} className={classes.nextButton} onClick={this._handleClick}>
             {this.state.percent === 100 ? "FINISH" : "NEXT"}
           </Button>
+          {this.state.percent === 100 ?
+          <div className={classes.feedbackArea}>
+            <Typography>
+              Any feedback?
+            </Typography>
+          <textarea className={classes.feedbackBox} id="feedback-input" rows="2"></textarea>
+          </div>
+          : <React.Fragment />}
           <Snackbar
             anchorOrigin={{
               vertical: 'bottom',
