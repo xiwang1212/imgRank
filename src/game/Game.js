@@ -74,6 +74,7 @@ class Game extends Component {
       wrong_vigilants: [],
       timer: Date.now(),
       common_ancestor: '',
+      classes: {},
     };
     this.onDragEnd = this.onDragEnd.bind(this);
 
@@ -100,8 +101,9 @@ class Game extends Component {
       ordering: order,
       groundTruth: currentSet['order'],
       common_ancestor: currentSet['common'],
-      classes: currentSet['classes']
+      classes: currentSet['classes'],
     })
+    console.log("!!!!!!!!!!!!!!!!! CurrentSet['classes']", currentSet['classes'])
   }
 
   gup(name) {
@@ -281,11 +283,11 @@ class Game extends Component {
                       autoPlay
                       muted
                       loop />
-                      { DEBUG &&
+                      {/*{ DEBUG &&
                       <Typography variant="h7">
                         {this.state.refVideos[vidRef].split('/').slice(-2,-1)}
                       </Typography>
-                      }
+                    }*/}
                   </div>
                 ))
               }
@@ -332,15 +334,14 @@ class Game extends Component {
 
                                 { DEBUG &&
                                 <Typography variant='h7' style={{ color: 'white' }}>
-                                  {this.state.classes[vidRef]}
+                                  {this.state.classes[vidRef].toString()}
                                 </Typography>
                                 }
                                 { DEBUG &&
                                 <Typography variant='h6' style={{ color: 'white' }}>
                                   {this.state.groundTruth[index].toString(10)}
                                 </Typography>
-                               }
-
+                                }
                                 <Typography variant='h5' style={{ color: 'white' }}>
                                   {labels[index]}
                                 </Typography>
