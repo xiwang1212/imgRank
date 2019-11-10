@@ -1,61 +1,65 @@
 [
   {
     "reference_videos": [
-      "https://data.csail.mit.edu/soundnet/actions3/flying/flickr-4-3-9-9-0-8-6-5-15643990865_11.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/boating/flickr-3-5-5-2-5-3-8-6-5235525386_25.mp4"
     ],
     "videos_to_rank": [
-      "https://data.csail.mit.edu/soundnet/actions3/flying/flickr-7-9-3-4-1-1-6-6-10479341166_45.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/flying/getty-aerial-high-angle-private-jet-flying-above-grand-canyon-arizona-video-id736-2_9.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/flying/getty-aerial-view-private-jet-flying-over-grand-canyon-arizona-video-id736-9_15.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/digging/getty-bangladesh-environment-video-id605824333_6.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/flying/getty-aerial-tracking-shot-point-of-view-following-red-biplane-flying-over-video-id666-41_19.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/constructing/getty-girl-making-a-gingerbread-house-video-id626322958_6.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/constructing/getty-glass-artist-working-in-his-studio-workshop-video-id675796960_11.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/constructing/getty-couple-making-birthday-cake-in-the-kitchen-delhi-india-video-id640939472_4.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/boating/yt-8zSNhYT1eXU_219.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/constructing/getty-contractors-raise-a-wall-on-a-home-under-construction-at-the-toll-video-id508570660_95.mp4"
     ],
     "order": [
       [
+        0,
+        1,
+        2,
+        4
+      ],
+      [
+        0,
+        1,
+        2,
+        4
+      ],
+      [
+        0,
+        1,
+        2,
+        4
+      ],
+      [
+        0,
+        1,
+        2,
+        4
+      ],
+      [
         3
-      ],
-      [
-        0,
-        1,
-        2,
-        4
-      ],
-      [
-        0,
-        1,
-        2,
-        4
-      ],
-      [
-        0,
-        1,
-        2,
-        4
-      ],
-      [
-        0,
-        1,
-        2,
-        4
       ]
     ],
-    "common": "vigilance"
+    "common": "vigilance",
+    "classes": [
+      "constructing",
+      "constructing",
+      "constructing",
+      "boating",
+      "constructing"
+    ]
   },
   {
     "reference_videos": [
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/06369.mp4"
     ],
     "videos_to_rank": [
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/07397.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/05218.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/07171.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/03367.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/08541.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/08541.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/07171.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/07397.mp4"
     ],
     "order": [
-      [
-        1
-      ],
       [
         0
       ],
@@ -63,25 +67,19 @@
         4
       ],
       [
-        3
+        2
       ],
       [
-        2
+        1
+      ],
+      [
+        3
       ]
     ],
     "classes": [
       [
-        "rolling",
-        "packing"
-      ],
-      [
         "laughing",
         "slapping"
-      ],
-      [
-        "walking",
-        "riding",
-        "bicycling"
       ],
       [
         "riding",
@@ -92,6 +90,15 @@
         "racing",
         "riding",
         "bicycling"
+      ],
+      [
+        "walking",
+        "riding",
+        "bicycling"
+      ],
+      [
+        "rolling",
+        "packing"
       ]
     ],
     "common": "rotating/spinning"
@@ -101,46 +108,36 @@
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/03073.mp4"
     ],
     "videos_to_rank": [
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/09245.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/03541.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/03800.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/08870.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/02188.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/03541.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/02188.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/09245.mp4"
     ],
     "order": [
       [
-        2
-      ],
-      [
-        1,
-        3,
-        4
-      ],
-      [
-        1,
-        3,
-        4
-      ],
-      [
-        1,
-        3,
-        4
-      ],
-      [
         0
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        4
       ]
     ],
     "classes": [
-      [
-        "falling",
-        "tripping",
-        "descending/lowering"
-      ],
-      [
-        "dropping",
-        "falling",
-        "descending/lowering"
-      ],
       [
         "discussing"
       ],
@@ -153,6 +150,16 @@
         "dropping",
         "falling",
         "descending/lowering"
+      ],
+      [
+        "dropping",
+        "falling",
+        "descending/lowering"
+      ],
+      [
+        "falling",
+        "tripping",
+        "descending/lowering"
       ]
     ],
     "common": "descending/lowering"
@@ -162,42 +169,47 @@
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/06653.mp4"
     ],
     "videos_to_rank": [
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/02588.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/07995.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/05692.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/02588.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/07408.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/08481.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/05692.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/08481.mp4"
     ],
     "order": [
       [
+        4
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        2,
         3
       ],
       [
-        1,
-        4
-      ],
-      [
-        1,
-        4
-      ],
-      [
-        0,
-        2
-      ],
-      [
-        0,
-        2
+        2,
+        3
       ]
     ],
     "classes": [
       [
         "leaping",
-        "ascending/rising",
+        "jumping",
         "descending/lowering"
       ],
       [
         "leaping",
         "jumping",
+        "descending/lowering"
+      ],
+      [
+        "leaping",
+        "ascending/rising",
         "descending/lowering"
       ],
       [
@@ -207,25 +219,20 @@
       ],
       [
         "frowning"
-      ],
-      [
-        "leaping",
-        "jumping",
-        "descending/lowering"
       ]
     ],
     "common": "jumping"
   },
   {
     "reference_videos": [
-      "https://data.csail.mit.edu/soundnet/actions3/baptizing/yt-fnmrlWfWvlM_9.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/diving/flickr-1-0-7-7-9-8-4-9-6910779849_16.mp4"
     ],
     "videos_to_rank": [
-      "https://data.csail.mit.edu/soundnet/actions3/baptizing/yt-0f0pnW-JmrU_54.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/slicing/getty-chopping-or-slicing-vegetable-close-up-on-cutting-board-video-id460323338_11.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/baptizing/yt-5_za1yMApvA_122.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/baptizing/yt-b3OBrDrHYig_59.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/baptizing/meta-3530783_110.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/diving/cameraman-surrounded-by-greater-amberjacks-panama-video-id1B07532_0001.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/catching/getty-boy-playing-american-football-american-fork-utah-usa-video-id93232115_3.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/diving/flickr-3-6-2-7-7-4-9-7-4636277497_11.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/diving/flickr-0-4-0-1-4-8-1-8-5704014818_3.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/diving/flickr-0-4-3-1-2-0-7-5-22404312075_18.mp4"
     ],
     "order": [
       [
@@ -256,53 +263,60 @@
         4
       ]
     ],
-    "common": "vigilance"
+    "common": "vigilance",
+    "classes": [
+      "diving",
+      "catching",
+      "diving",
+      "diving",
+      "diving"
+    ]
   },
   {
     "reference_videos": [
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/06927.mp4"
     ],
     "videos_to_rank": [
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/05714.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/06665.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/04234.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/09948.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/07508.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/05714.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/04234.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/07508.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/06665.mp4"
     ],
     "order": [
       [
-        1
+        4
       ],
       [
         2
-      ],
-      [
-        4
       ],
       [
         3
       ],
       [
         0
+      ],
+      [
+        1
       ]
     ],
     "classes": [
-      [
-        "skiing",
-        "sliding"
-      ],
-      [
-        "measuring"
-      ],
-      [
-        "skateboarding"
-      ],
       [
         "skating",
         "skateboarding"
       ],
       [
+        "skiing",
+        "sliding"
+      ],
+      [
+        "skateboarding"
+      ],
+      [
         "surfing"
+      ],
+      [
+        "measuring"
       ]
     ],
     "common": "skiing_boarding"
@@ -312,11 +326,11 @@
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/01970.mp4"
     ],
     "videos_to_rank": [
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/06224.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/08939.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/03400.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/01723.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/03371.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/08939.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/06224.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/03371.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/03400.mp4"
     ],
     "order": [
       [
@@ -324,21 +338,21 @@
       ],
       [
         0,
-        3,
-        4
+        2,
+        3
       ],
       [
         0,
-        3,
-        4
+        2,
+        3
       ],
       [
         0,
-        3,
-        4
+        2,
+        3
       ],
       [
-        2
+        4
       ]
     ],
     "classes": [
@@ -351,19 +365,19 @@
         "constructing/assembling"
       ],
       [
+        "cutting",
+        "shaving",
+        "grooming"
+      ],
+      [
+        "cutting",
+        "shaving",
+        "grooming"
+      ],
+      [
         "grooming",
         "flossing",
         "pulling"
-      ],
-      [
-        "cutting",
-        "shaving",
-        "grooming"
-      ],
-      [
-        "cutting",
-        "shaving",
-        "grooming"
       ]
     ],
     "common": "cleaning/washing/grooming"
@@ -373,69 +387,69 @@
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/05454.mp4"
     ],
     "videos_to_rank": [
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/01490.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/09295.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/03416.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/03624.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/00087.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/09295.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/01490.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/00087.mp4"
     ],
     "order": [
       [
-        4
+        0
       ],
       [
         2
       ],
       [
-        0,
         1,
-        3
+        3,
+        4
       ],
       [
-        0,
         1,
-        3
+        3,
+        4
       ],
       [
-        0,
         1,
-        3
+        3,
+        4
       ]
     ],
     "classes": [
       [
-        "scratching",
-        "clawing"
-      ],
-      [
-        "scratching",
-        "clawing"
-      ],
-      [
-        "clawing"
-      ],
-      [
-        "scratching",
-        "clawing"
-      ],
-      [
         "catching",
         "performing",
         "juggling"
+      ],
+      [
+        "scratching",
+        "clawing"
+      ],
+      [
+        "clawing"
+      ],
+      [
+        "scratching",
+        "clawing"
+      ],
+      [
+        "scratching",
+        "clawing"
       ]
     ],
     "common": "scratching"
   },
   {
     "reference_videos": [
-      "https://data.csail.mit.edu/soundnet/actions3/chewing/getty-attractive-blond-woman-eating-watermelon-on-beach-video-id183504568_20.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/planting/getty-large-eight-tire-tractor-plowing-farm-field-video-id185496985_7.mp4"
     ],
     "videos_to_rank": [
-      "https://data.csail.mit.edu/soundnet/actions3/chewing/getty-1960s-close-up-mixing-and-serving-spaghetti-tomato-sauce-from-bowl-video-id752-89_11.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/chewing/getty-beautiful-girl-and-strawberry-video-id127847474_4.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/chewing/getty-boy-eating-corn-flips-video-id473176547_17.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/constructing/getty-craftsmen-are-cutting-wood-for-making-furniture-video-id483378492_9.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/chewing/getty-asian-preschool-teacher-and-children-eating-pizza-in-classroom-video-id467287762_7.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/planting/getty-cultivating-fields-with-the-tractor-video-id461185644_13.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/planting/getty-agricultural-tractor-sowing-and-cultivating-field-video-id518744544_1.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/planting/getty-agricultural-tractor-sowing-and-cultivating-field-video-id518750810_13.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/handwriting/getty-business-video-id158528071_17.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/planting/getty-agricultural-tractor-sowing-and-cultivating-field-video-id518130102_6.mp4"
     ],
     "order": [
       [
@@ -466,7 +480,14 @@
         4
       ]
     ],
-    "common": "vigilance"
+    "common": "vigilance",
+    "classes": [
+      "planting",
+      "planting",
+      "planting",
+      "handwriting",
+      "planting"
+    ]
   },
   {
     "reference_videos": [
@@ -474,32 +495,32 @@
     ],
     "videos_to_rank": [
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/05386.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/06457.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/09987.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/03411.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/09719.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/03411.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/06457.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/09987.mp4"
     ],
     "order": [
       [
+        2
+      ],
+      [
+        0,
+        1,
         3
       ],
       [
         0,
         1,
-        4
+        3
       ],
       [
         0,
         1,
-        4
+        3
       ],
       [
-        0,
-        1,
         4
-      ],
-      [
-        2
       ]
     ],
     "classes": [
@@ -507,6 +528,14 @@
         "sleeping",
         "resting",
         "laying"
+      ],
+      [
+        "sleeping",
+        "resting",
+        "laying"
+      ],
+      [
+        "bulldozing"
       ],
       [
         "sleeping",
@@ -516,14 +545,6 @@
       [
         "sitting",
         "speaking"
-      ],
-      [
-        "bulldozing"
-      ],
-      [
-        "sleeping",
-        "resting",
-        "laying"
       ]
     ],
     "common": "body_positions"
@@ -533,64 +554,64 @@
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/03652.mp4"
     ],
     "videos_to_rank": [
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/05444.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/08299.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/05617.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/07673.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/01851.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/07673.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/05617.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/05444.mp4"
     ],
     "order": [
       [
-        0
-      ],
-      [
-        1,
-        2,
-        3,
         4
       ],
       [
+        0,
         1,
         2,
-        3,
-        4
+        3
       ],
       [
+        0,
         1,
         2,
-        3,
-        4
+        3
       ],
       [
+        0,
         1,
         2,
-        3,
-        4
+        3
+      ],
+      [
+        0,
+        1,
+        2,
+        3
       ]
     ],
     "classes": [
       [
+        "blowing",
+        "inflating",
+        "filling"
+      ],
+      [
+        "blowing",
+        "inflating",
+        "filling"
+      ],
+      [
+        "blowing",
+        "inflating",
+        "filling"
+      ],
+      [
+        "blowing",
+        "inflating",
+        "filling"
+      ],
+      [
         "twisting"
-      ],
-      [
-        "blowing",
-        "inflating",
-        "filling"
-      ],
-      [
-        "blowing",
-        "inflating",
-        "filling"
-      ],
-      [
-        "blowing",
-        "inflating",
-        "filling"
-      ],
-      [
-        "blowing",
-        "inflating",
-        "filling"
       ]
     ],
     "common": "blowing"
@@ -600,37 +621,32 @@
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/03271.mp4"
     ],
     "videos_to_rank": [
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/08455.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/08620.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/00052.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/08455.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/01904.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/02109.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/01904.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/00052.mp4"
     ],
     "order": [
       [
         3
       ],
       [
-        1
+        0
       ],
       [
-        0,
-        2
-      ],
-      [
-        0,
-        2
-      ],
-      [
+        1,
         4
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2
       ]
     ],
     "classes": [
-      [
-        "wetting",
-        "spilling",
-        "splashing"
-      ],
       [
         "emptying",
         "pouring",
@@ -642,10 +658,15 @@
         "splashing"
       ],
       [
+        "waxing"
+      ],
+      [
         "tapping"
       ],
       [
-        "waxing"
+        "wetting",
+        "spilling",
+        "splashing"
       ]
     ],
     "common": "removing"
@@ -656,10 +677,10 @@
     ],
     "videos_to_rank": [
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/01177.mp4",
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/02902.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/06258.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/09220.mp4",
       "https://data.csail.mit.edu/soundnet/actions3/multi_test/04176.mp4",
-      "https://data.csail.mit.edu/soundnet/actions3/multi_test/02902.mp4"
+      "https://data.csail.mit.edu/soundnet/actions3/multi_test/09220.mp4"
     ],
     "order": [
       [
@@ -669,13 +690,13 @@
         3
       ],
       [
+        2
+      ],
+      [
         1
       ],
       [
         4
-      ],
-      [
-        2
       ]
     ],
     "classes": [
@@ -684,18 +705,18 @@
         "applauding"
       ],
       [
-        "stroking/petting",
-        "rubbing"
+        "snuggling/cuddling/hugging"
       ],
       [
-        "filming/photographing",
-        "kissing"
+        "stroking/petting",
+        "rubbing"
       ],
       [
         "stroking/petting"
       ],
       [
-        "snuggling/cuddling/hugging"
+        "filming/photographing",
+        "kissing"
       ]
     ],
     "common": "showing_affection"

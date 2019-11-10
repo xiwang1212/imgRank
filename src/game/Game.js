@@ -23,7 +23,7 @@ const VIGILANCE = 'vigilance';
 const grid = 8;
 const maxLevels = 13;
 const MTURK_SUBMIT_SUFFIX = "/mturk/externalSubmit";
-const DEBUG = false;
+const DEBUG = true;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
@@ -100,6 +100,7 @@ class Game extends Component {
       ordering: order,
       groundTruth: currentSet['order'],
       common_ancestor: currentSet['common'],
+      classes: currentSet['classes']
     })
   }
 
@@ -329,15 +330,16 @@ class Game extends Component {
                                     loop />
                                 </div>
 
-                                {/* { DEBUG &&
+                                { DEBUG &&
                                 <Typography variant='h7' style={{ color: 'white' }}>
-                                  {this.state.unknownVideos[vidRef].split('/').slice(-2,-1)}
+                                  {this.state.classes[vidRef]}
                                 </Typography>
-
+                                }
+                                { DEBUG &&
                                 <Typography variant='h6' style={{ color: 'white' }}>
                                   {this.state.groundTruth[index].toString(10)}
                                 </Typography>
-                               */}
+                               }
 
                                 <Typography variant='h5' style={{ color: 'white' }}>
                                   {labels[index]}
