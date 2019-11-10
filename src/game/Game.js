@@ -23,7 +23,7 @@ const VIGILANCE = 'vigilance';
 const grid = 8;
 const maxLevels = 13;
 const MTURK_SUBMIT_SUFFIX = "/mturk/externalSubmit";
-const DEBUG = true;
+const DEBUG = false;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
@@ -74,7 +74,7 @@ class Game extends Component {
       wrong_vigilants: [],
       timer: Date.now(),
       common_ancestor: '',
-      classes: {},
+      classes: [],
     };
     this.onDragEnd = this.onDragEnd.bind(this);
 
@@ -103,7 +103,6 @@ class Game extends Component {
       common_ancestor: currentSet['common'],
       classes: currentSet['classes'],
     })
-    console.log("!!!!!!!!!!!!!!!!! CurrentSet['classes']", currentSet['classes'])
   }
 
   gup(name) {
@@ -283,11 +282,11 @@ class Game extends Component {
                       autoPlay
                       muted
                       loop />
-                      {/*{ DEBUG &&
+                      { DEBUG &&
                       <Typography variant="h7">
                         {this.state.refVideos[vidRef].split('/').slice(-2,-1)}
                       </Typography>
-                    }*/}
+                    }
                   </div>
                 ))
               }
@@ -334,7 +333,7 @@ class Game extends Component {
 
                                 { DEBUG &&
                                 <Typography variant='h7' style={{ color: 'white' }}>
-                                  {this.state.classes[vidRef].toString()}
+                                  {JSON.stringify(this.state.classes[index])}
                                 </Typography>
                                 }
                                 { DEBUG &&
