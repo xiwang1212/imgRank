@@ -72,26 +72,21 @@ const CustomizedDialogs = ( props ) => {
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          How to Play VidRank
+          How to Play Image Rank
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-            You are shown 1 to 4 reference videos (top row), and a set of 5 unknown
-            videos (bottom row). Your task is to rank the unknown videos from most to least
-            similar to the abstract action represented by the reference videos.
+            You are shown 3 reference images (top row), and a set of 5 unknown
+            images (bottom row). Your task is to rank the unknown images from most to least
+            interesting images.
             You will need to:
           </Typography>
           <Typography gutterBottom>
-          1. Watch the reference and unknown videos. Scroll to see all
-          videos if necessary.
+            1. Order 5 unknown images by how interesting each is. Drag the unknown
+          images around to order them!
           </Typography>
           <Typography gutterBottom>
-          2. Order 5 unknown videos by how similar each is to the general
-          action represented by the reference videos. Drag the unknown
-          videos around to order them!
-          </Typography>
-          <Typography gutterBottom>
-            3. Click "NEXT" when you're ready to move to the next level!
+            2. Click "NEXT" when you have complete the ranking and are ready to move to the next level!
           </Typography>
         </DialogContent>
       </Dialog>

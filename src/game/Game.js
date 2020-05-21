@@ -65,7 +65,9 @@ class Game extends Component {
       sets: [],
       percent: Math.round(Math.min((1) / maxLevels * 100, 100)),
       refVideos: {},
-      unknownVideos: {},
+      refImages: {},
+      // unknownVideos: {},
+      unknownImages: {},
       ordering: [],
       result: [],
       groundTruth: [],
@@ -81,7 +83,8 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    var data = require("../hit_jsons/" + this.gup("task") + ".json");
+    // var data = require("../hit_jsons/" + this.gup("task") + ".json");
+    var data = require("../" + this.gup("task") + ".json");
     this.setState({
       sets: data,
     }, () => this.updateVideos());
@@ -89,15 +92,20 @@ class Game extends Component {
 
   updateVideos() {
     const currentSet = this.state.sets[this.state.currentLevel-1]
-    var order = currentSet['videos_to_rank'];
-    const unknownVideos = {};
-    currentSet['videos_to_rank'].forEach((vid) => unknownVideos[vid] = vid);
+    // var order = currentSet['videos_to_rank'];
+    var order = currentSet['images_to_rank'];
+    // const unknownVideos = {};
+    // currentSet['videos_to_rank'].forEach((vid) => unknownVideos[vid] = vid);
+    const unknownImages = {};
+    currentSet['images_to_rank'].forEach((vid) => unknownImages[vid] = vid);
     if (this.state.result.length >= this.state.currentLevel) {
       order = this.state.result[this.state.currentLevel - 1]['human_ordering'];
     }
     this.setState({
       refVideos: currentSet['reference_videos'],
-      unknownVideos: unknownVideos,
+      refImages: currentSet['reference_images'],
+      // unknownVideos: unknownVideos,
+      unknowImages: unknownImages,
       ordering: order,
       groundTruth: currentSet['order'],
       common_ancestor: currentSet['common'],
@@ -169,15 +177,15 @@ class Game extends Component {
     $("#submit-form").submit();
   }
 
-  _handleBackClick = () => {
-    if (this.state.currentLevel == 1) {
-      return;
-    }
-    this.setState({
-      currentLevel: this.state.currentLevel - 1,
-      percent: Math.round(Math.min((this.state.currentLevel - 1) / maxLevels * 100, 100)),
-    }, () => this.updateVideos());
-  }
+  // _handleBackClick = () => {
+  //   if (this.state.currentLevel == 1) {
+  //     return;
+  //   }
+  //   this.setState({
+  //     currentLevel: this.state.currentLevel - 1,
+  //     percent: Math.round(Math.min((this.state.currentLevel - 1) / maxLevels * 100, 100)),
+  //   }, () => this.updateVideos());
+  // }
 
   _handleClick = () => {
     var currentResult = this.state.sets[this.state.currentLevel - 1]
@@ -232,11 +240,11 @@ class Game extends Component {
 
   render() {
     const { classes } = this.props;
-    var labels = ["Least Similar", "Less Similar", "Similar", "More Similar", "Most Similar"];
+    var labels = ["Least Interesting", "Less Interesting", "Interesting", "More Interesting", "Most Interesting"];
     return (
       <div className={classes.root}>
         <Typography variant="h3">
-          VidRank
+          Image Rank
         </Typography>
         <div className={classes.progressSection}>
           <Typography variant="h5">
@@ -260,7 +268,7 @@ class Game extends Component {
         </div>
         <div className={classes.videoSection}>
           <Typography variant="h5">
-            Reference Videos
+            Reference Images
           </Typography>
 
           { DEBUG &&
@@ -272,11 +280,12 @@ class Game extends Component {
           <div className={classes.referenceSection}>
             <div className={classes.referenceBackground}>
               {
-                Object.keys(this.state.refVideos).map(vidRef => (
+                Object.keys(this.state.refImages).map(vidRef => (
                   <div className={classes.videoContainerRef}>
-                    <video
+                    <img
                       ref={vidRef}
-                      src={this.state.refVideos[vidRef]}
+                      // src={this.state.refVideos[vidRef]}
+                      src={this.state.refImages[vidRef]}
                       type="video/mp4"
                       className={classes.videoPlayerRef}
                       autoPlay
@@ -284,7 +293,7 @@ class Game extends Component {
                       loop />
                       { DEBUG &&
                       <Typography variant="h7">
-                        {this.state.refVideos[vidRef].split('/').slice(-2,-1)}
+                        {this.state.refImages[vidRef].split('/').slice(-2,-1)}
                       </Typography>
                     }
                   </div>
@@ -295,7 +304,7 @@ class Game extends Component {
         </div>
         <div className={classes.videoSection}>
           <Typography variant="h5">
-            Unknown Videos
+            Unknown Images
           </Typography>
           <div className={classes.unknownSection}>
 
@@ -323,8 +332,9 @@ class Game extends Component {
                               >
 
                                 <div className={classes.videoContainer}>
-                                  <video
-                                    src={this.state.unknownVideos[vidRef]}
+                                  <img
+                                    // src={this.state.unknownVideos[vidRef]}
+                                    src={this.state.unknownImages[vidRef]}
                                     className={classes.videoPlayerUnknown}
                                     autoPlay
                                     muted
@@ -357,9 +367,9 @@ class Game extends Component {
           </div>
         </div>
         <div className={classes.buttonSection}>
-          <Button variant="contained" className={classes.backButton} onClick={this._handleBackClick}>
-            BACK
-          </Button>
+          {/*<Button variant="contained" className={classes.backButton} onClick={this._handleBackClick}>*/}
+          {/*  BACK*/}
+          {/*</Button>*/}
           <Button variant="contained" disabled={this.state.disabled} className={classes.nextButton} onClick={this._handleClick}>
             {this.state.percent === 100 ? "FINISH" : "NEXT"}
           </Button>
