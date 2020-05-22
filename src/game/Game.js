@@ -21,7 +21,7 @@ const reorder = (list, startIndex, endIndex) => {
 
 const VIGILANCE = 'vigilance';
 const grid = 8;
-const maxLevels = 13;
+const maxLevels = 2;
 const MTURK_SUBMIT_SUFFIX = "/mturk/externalSubmit";
 const DEBUG = false;
 
@@ -65,9 +65,7 @@ class Game extends Component {
       sets: [],
       percent: Math.round(Math.min((1) / maxLevels * 100, 100)),
       refVideos: {},
-      refImages: {},
-      // unknownVideos: {},
-      unknownImages: {},
+      unknownVideos: {},
       ordering: [],
       result: [],
       groundTruth: [],
@@ -83,8 +81,7 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    // var data = require("../hit_jsons/" + this.gup("task") + ".json");
-    var data = require("../" + this.gup("task") + ".json");
+    var data = require("../hit_jsons/" + this.gup("task") + ".json");
     this.setState({
       sets: data,
     }, () => this.updateVideos());
@@ -92,20 +89,15 @@ class Game extends Component {
 
   updateVideos() {
     const currentSet = this.state.sets[this.state.currentLevel-1]
-    // var order = currentSet['videos_to_rank'];
     var order = currentSet['images_to_rank'];
-    // const unknownVideos = {};
-    // currentSet['videos_to_rank'].forEach((vid) => unknownVideos[vid] = vid);
-    const unknownImages = {};
-    currentSet['images_to_rank'].forEach((vid) => unknownImages[vid] = vid);
+    const unknownVideos = {};
+    currentSet['images_to_rank'].forEach((vid) => unknownVideos[vid] = vid);
     if (this.state.result.length >= this.state.currentLevel) {
       order = this.state.result[this.state.currentLevel - 1]['human_ordering'];
     }
     this.setState({
-      refVideos: currentSet['reference_videos'],
-      refImages: currentSet['reference_images'],
-      // unknownVideos: unknownVideos,
-      unknowImages: unknownImages,
+      refVideos: currentSet['reference_images'],
+      unknownVideos: unknownVideos,
       ordering: order,
       groundTruth: currentSet['order'],
       common_ancestor: currentSet['common'],
@@ -195,7 +187,7 @@ class Game extends Component {
       for (let i = 0; i < currentResult['order'].length; i++) {
         if (currentResult['order'][i].length == 1) {
           let index = currentResult['order'][i][0];
-          var video = currentResult['videos_to_rank'][index];
+          var video = currentResult['images_to_rank'][index];
           if (video !== this.state.ordering[i]) {
             if (!this.state.wrong_vigilants.includes(video)) {
               this.state.wrong_vigilants.push(video);
@@ -270,6 +262,9 @@ class Game extends Component {
           <Typography variant="h5">
             Reference Images
           </Typography>
+          <Typography variant="h6">
+            From least to most Interesting
+          </Typography>
 
           { DEBUG &&
           <Typography variant="h7">
@@ -280,20 +275,17 @@ class Game extends Component {
           <div className={classes.referenceSection}>
             <div className={classes.referenceBackground}>
               {
-                Object.keys(this.state.refImages).map(vidRef => (
+                Object.keys(this.state.refVideos).map(vidRef => (
                   <div className={classes.videoContainerRef}>
                     <img
                       ref={vidRef}
-                      // src={this.state.refVideos[vidRef]}
-                      src={this.state.refImages[vidRef]}
+                      src={this.state.refVideos[vidRef]}
                       type="video/mp4"
                       className={classes.videoPlayerRef}
-                      autoPlay
-                      muted
-                      loop />
+                    />
                       { DEBUG &&
                       <Typography variant="h7">
-                        {this.state.refImages[vidRef].split('/').slice(-2,-1)}
+                        {this.state.refVideos[vidRef].split('/').slice(-2,-1)}
                       </Typography>
                     }
                   </div>
@@ -333,12 +325,9 @@ class Game extends Component {
 
                                 <div className={classes.videoContainer}>
                                   <img
-                                    // src={this.state.unknownVideos[vidRef]}
-                                    src={this.state.unknownImages[vidRef]}
+                                    src={this.state.unknownVideos[vidRef]}
                                     className={classes.videoPlayerUnknown}
-                                    autoPlay
-                                    muted
-                                    loop />
+                                  />
                                 </div>
 
                                 { DEBUG &&

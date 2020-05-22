@@ -91,13 +91,13 @@ export const styles = theme => ({
     backgroundColor: '#a31f34!important',
   },
   videoPlayerRef: {
-    width: 320,
+    width: 260,
     [theme.breakpoints.down('md')]: {
       width: 240,
     }
   },
   videoPlayerUnknown: {
-    width: 280,
+    width: 260,
     zIndex: -1,
     [theme.breakpoints.down('md')]: {
       width: 240,
@@ -108,7 +108,7 @@ export const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     width: 280,
-    height: 157.5,
+    height: 260,
     [theme.breakpoints.down('md')]: {
       width: 240,
       height: 135,
@@ -119,8 +119,8 @@ export const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 320,
-    height: 180.3,
+    width: 300,
+    height: 320,
     paddingLeft: 8,
     paddingRight: 8,
     [theme.breakpoints.down('md')]: {
